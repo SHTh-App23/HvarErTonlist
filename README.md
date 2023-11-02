@@ -4,3 +4,5 @@ Við ætlum að gera app sem sýnir tónlistaviðburði í Íslandi. Notandinn g
 
 
  test
+
+ I want it that way, tell me why.
