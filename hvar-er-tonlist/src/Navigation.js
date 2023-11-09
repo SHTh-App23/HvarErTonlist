@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+const Navigation = ( {openLoginModal }) => {
     return (
       <nav>
         <ul>
@@ -13,6 +13,9 @@ const Navigation = () => {
           </li>
           <li> 
             <Link to="/profile">Profile</Link>
+          </li>
+          <li>
+            <button onClick={openLoginModal}>Login</button>
           </li>
         </ul>
       </nav>
