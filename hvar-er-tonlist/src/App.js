@@ -24,6 +24,14 @@ function App() {
     setLoginModalOpen(false);
   };
 
+  const modalStyles = {
+    content: {
+      width: '50%', // Set the desired width
+      height: '50%', // Set the desired height
+      margin: 'auto', // Center the modal
+    },
+  };
+  
   return (
     <>
       <Navigation openLoginModal={openLoginModal} />
@@ -37,6 +45,7 @@ function App() {
         isOpen={isLoginModalOpen}
         onRequestClose={closeLoginModal}
         contentLabel='Login Modal'
+        style={modalStyles}
       >
         <LoginModal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal} />
       </Modal>
