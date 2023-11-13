@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navigation = ( {openLoginModal, openVidburdurModal }) => {
+const Navigation = ( {openLoginModal, openVidburdurModal, openLeitModal }) => {
     return (
       <nav>
         <ul>
@@ -19,6 +19,9 @@ const Navigation = ( {openLoginModal, openVidburdurModal }) => {
           </li>
           <li>
             <button onClick={openVidburdurModal}>Skrá viðburð</button>
+          </li>
+          <li>
+            <button onClick={openLeitModal}>Leita</button>
           </li>
         </ul>
       </nav>
