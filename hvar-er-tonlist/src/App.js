@@ -8,12 +8,14 @@ import Profile from './routes/Profile';
 import Navigation from './Navigation';
 import LoginModal from './modals/loginmodal';
 import VidburdurModal from './modals/vidburdmodal';
+import LeitModal from './modals/leitmodal';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
 function App() {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isVidburdurModalOpen, setVidburdurModalOpen] = useState(false);
+  const [isLeitModalOpen, setLeitModalOpen] = useState(false);
 
   const openLoginModal = () => {
     setLoginModalOpen(true);
@@ -31,6 +33,14 @@ function App() {
     setVidburdurModalOpen(false);
   };
 
+  const openLeitModal = () => {
+    setLeitModalOpen(true);
+  };
+
+  const closeLeitModal = () => {
+    setLeitModalOpen(false);
+  };
+
   const modalStyles = {
     content: {
       width: '50%', // Set the desired width
@@ -39,9 +49,13 @@ function App() {
     },
   };
 
+  const handleSearch = (searchQuery) => {
+    console.log('Searching for:', searchQuery);
+  };
+
   return (
     <>
-      <Navigation openLoginModal={openLoginModal} openVidburdurModal={openVidburdurModal} />
+      <Navigation openLoginModal={openLoginModal} openVidburdurModal={openVidburdurModal} openLeitModal={openLeitModal} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
@@ -64,6 +78,19 @@ function App() {
         style={modalStyles}
       >
         <VidburdurModal isOpen={isVidburdurModalOpen} onRequestClose={closeVidburdurModal} />
+      </Modal>
+
+      <Modal
+        isOpen={isLeitModalOpen}
+        onRequestClose={closeLeitModal}
+        contentLabel="Leit Modal"
+        style={modalStyles}
+      >
+        <LeitModal
+          isOpen={isLeitModalOpen}
+          onRequestClose={closeLeitModal}
+          onSearch={handleSearch}
+        />
       </Modal>
     </>
   );
