@@ -9,8 +9,9 @@ app.use(express.json());
 
 // Replace 'your-database-name' with your actual database name
 mongoose.connect("mongodb+srv://4360szymon:hvarertonlist@hvarertonlistcluster.orieewc.mongodb.net/hvarertonlist?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+//mongoose.connect("mongodb+srv://4360szymon:hvarertonlist@hvarertonlistcluster.orieewc.mongodb.net/hvarertonlist?retryWrites=true&w=majority", {
+  //useNewUrlParser: true,
+  //useUnifiedTopology: true,
 });
 
 app.get('/getUsers', (req, res) => {
