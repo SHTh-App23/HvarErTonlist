@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import { Routes,Route } from 'react-router-dom';
 import Modal from 'react-modal';
@@ -7,12 +7,20 @@ import Events from './routes/Events';
 import Profile from './routes/Profile';
 import Navigation from './Navigation';
 import LoginModal from './modals/loginmodal';
+import axios from 'axios';
+
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
 //Forsíða - viðburður - login - profile
 
 function App() {
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/getUsers')
+    .then(users => setUsers(users.data))
+    .catch(err => console.log(err))
+  }, [])
 
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
@@ -49,8 +57,48 @@ function App() {
       >
         <LoginModal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal} />
       </Modal>
+    
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              First Name
+            </th>
+            <th>
+              Last name
+            </th>
+            <th>
+              Age
+            </th>
+            <th>Bio</th>
+            <th>country</th>
+            <th>login</th>
+            <th>password</th>
+            <th>country</th>
+            <th>school</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user => {
+            return <tr>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.age}</td>
+              <td>{user.bio}</td>
+              <td>{user.country}</td>
+              <td>{user.login}</td>
+              <td>{user.password}</td>
+              <td>{user.country}</td>
+              <td>{user.school}</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
+    </div>
     </>
   );
+
 }
 
 export default App;
