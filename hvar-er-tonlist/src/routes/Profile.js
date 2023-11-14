@@ -1,8 +1,54 @@
 // Profile.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const Profile = () => {
-  return <div>Profile Page</div>;
+  // Fa usera
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/getUsers')
+    .then(users => {console.log(users.data); setUsers(users.data)})
+    .catch(err => console.log(err))
+  }, [])
+  return <div>Profile Page
+      <table>
+    <thead>
+      <tr>
+        <th>
+          First Name
+        </th>
+        <th>
+          Last name
+        </th>
+        <th>
+          Age
+        </th>
+        <th>Bio</th>
+        <th>country</th>
+        <th>login</th>
+        <th>password</th>
+        <th>country</th>
+        <th>school</th>
+      </tr>
+    </thead>
+    <tbody>
+      {users.map((user) => {
+        return <tr>
+          <td>{user.firstName}</td>
+          <td>{user.lastName}</td>
+          <td>{user.age}</td>
+          <td>{user.bio}</td>
+          <td>{user.country}</td>
+          <td>{user.login}</td>
+          <td>{user.password}</td>
+          <td>{user.country}</td>
+          <td>{user.school}</td>
+        </tr>
+      })}
+    </tbody>
+  </table>
+  </div>;
 };
 
 export default Profile;
