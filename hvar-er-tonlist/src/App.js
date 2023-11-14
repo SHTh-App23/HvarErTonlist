@@ -7,6 +7,7 @@ import Events from './routes/Events';
 import Profile from './routes/Profile';
 import Navigation from './Navigation';
 import LoginModal from './modals/loginmodal';
+import Navbar from './components/Navbar'
 
 import VidburdurModal from './modals/vidburdmodal';
 import LeitModal from './modals/leitmodal';
@@ -94,6 +95,7 @@ function App() {
   return (
     <>
       <Navigation openLoginModal={openLoginModal} openVidburdurModal={openVidburdurModal} openLeitModal={openLeitModal} />
+      <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal}  />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
