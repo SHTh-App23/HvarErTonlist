@@ -22,9 +22,33 @@ function App() {
   const [users, setUsers] = useState([])
   useEffect(() => {
     axios.get('http://localhost:3001/getUsers')
-    .then(users => setUsers(users.data))
+    .then(users => {console.log(users.data); setUsers(users.data)})
     .catch(err => console.log(err))
   }, [])
+
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/getEvents')
+    .then(events => {console.log(events.data); setEvents(events.data)})
+    .catch(err => console.log(err))
+  }, [])
+/*
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/data');
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+*/
 
 
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -130,7 +154,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => {
+          {users.map((user) => {
             return <tr>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
@@ -141,6 +165,38 @@ function App() {
               <td>{user.password}</td>
               <td>{user.country}</td>
               <td>{user.school}</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Event name
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+              Location
+            </th>
+            <th>Description</th>
+            <th>Organizer</th>
+            <th>Picture link</th>
+            <th>Verd</th>
+          </tr>
+        </thead>
+        <tbody>
+          {events.map((event) => {
+            return <tr>
+              <td>{event.name}</td>
+              <td>{event.date}</td>
+              <td>{event.location}</td>
+              <td>{event.description}</td>
+              <td>{event.organizer}</td>
+              <td>{event.picture}</td>
+              <td>{event.verd}</td>
             </tr>
           })}
         </tbody>
