@@ -16,7 +16,7 @@ const Navbar = ( {openLoginModal, openLeitModal, openVidburdurModal }) => {
                 Hvar er tónlist?
               </Typography>
               <Link to="/">Home</Link>
-              <Link to="/events">Events</Link>
+              <Link to="/event">Event</Link>
               <Link to="/profile">Profile</Link>
               <Button onClick={openVidburdurModal} color="inherit">Nýr vidburdur</Button>
               <Button onClick={openLeitModal} color="inherit">Leita</Button>
