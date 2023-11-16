@@ -1,8 +1,30 @@
-// Home.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 const Home = () => {
-  return <div>Home Page</div>;
+
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/getEvents')
+      .then(events => { console.log(events.data); setEvents(events.data) })
+      .catch(err => console.log(err))
+  }, [])
+
+  return (
+    <div>
+      <h1>Event List</h1>
+      <ul>
+        {events.map(event => (
+          <li key={event.id}>
+            <Link to={`/event/${event.id}`}>{event.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default Home;
