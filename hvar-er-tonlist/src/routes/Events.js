@@ -20,6 +20,7 @@ const Events = () => {
   <table>
     <thead>
       <tr>
+        <th>ID</th>
         <th>
           Event name
         </th>
@@ -38,6 +39,7 @@ const Events = () => {
     <tbody>
       {events.map((event) => {
         return <tr>
+          <td>{event._id}</td>
           <td>{event.name}</td>
           <td>{event.date}</td>
           <td>{event.location}</td>
