@@ -3,9 +3,8 @@ import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import Modal from 'react-modal';
 import Home from './routes/Home';
-import Events from './routes/Events';
+import Events from './routes/Event';
 import Profile from './routes/Profile';
-import Navigation from './Navigation';
 import LoginModal from './modals/loginmodal';
 import Navbar from './components/Navbar'
 
@@ -58,8 +57,7 @@ function App() {
 
   return (
     <>
-      <Navigation openLoginModal={openLoginModal} openVidburdurModal={openVidburdurModal} openLeitModal={openLeitModal} />
-      <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal}  />
+      <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
