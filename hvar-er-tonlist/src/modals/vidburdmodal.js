@@ -19,28 +19,33 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [picture, setPicture] = useState("");
   const [verd, setPrice] = useState("");
   const handleOnSubmit = async (e) => {
-        e.preventDefault();
-        let result = await fetch(
-        'http://localhost:3000/registerEvent', {
-            method: "post",
-            body: JSON.stringify({ name, date, location, description, organizer, picture, verd }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        result = await result.json();
-        console.warn(result);
-        if (result) {
-            alert("Data saved succesfully");
-            setName("");
-            setDate("");
-            setLocation("");
-            setDescription("");
-            setOrganizer("");
-            setPicture("");
-            setPrice("");
-        }
+  e.preventDefault();
+
+  try {
+    const result = await axios.post(
+      'http://localhost:3001/registerEvent',
+      { name, date, location, description, organizer, picture, verd },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+
+    console.warn(result.data);
+
+    if (result.data) {
+      alert("Data saved successfully");
+      setName("");
+      setDate("");
+      setLocation("");
+      setDescription("");
+      setOrganizer("");
+      setPicture("");
+      setPrice("");
+    }
+  } catch (error) {
+    console.error("Error saving data:", error);
+    // Handle the error as needed (e.g., display an error message to the user)
   }
+};
+
 
   /*const handleSave = () => {
     // Implement your logic to save the event details
