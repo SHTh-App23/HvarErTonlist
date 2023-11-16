@@ -26,26 +26,28 @@ app.get('/getEvents', (req, res) => {
   .catch(err => res.json(err))
 })
 
-const Event = mongoose.model('events', eventModel);
+//const Event = mongoose.model('events', eventModel);
 
+// Skra event
 // Skra event
 app.post("/registerEvent", async (req, resp) => {
   try {
-      const event = new Event(req.body);
-      let result = await event.save();
-      result = result.toObject();
-      if (result) {
-          delete result.password;
-          resp.send(req.body);
-          console.log(result);
-      } else {
-          console.log("Event already register");
-      }
-
+    const event = new eventModel(req.body);
+    let result = await event.save();
+    result = result.toObject();
+    if (result) {
+      delete result.password;
+      resp.send(req.body);
+      console.log(result);
+    } else {
+      console.log("Event already register");
+    }
   } catch (e) {
-      resp.send("Something Went Wrong");
+    console.error("Error saving event:", e);
+    resp.status(500).json({ error: 'Something went wrong' });
   }
 });
+
 
 const PORT = 3001;
 

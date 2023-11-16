@@ -17,7 +17,7 @@ const Navbar = ( {openLoginModal, openLeitModal }) => {
               <Button onClick={openLoginModal} color="inherit">Skrá inn</Button>
             </Toolbar>
           </AppBar>
-        </Box>
+        </Box> 
       );
   };
 
