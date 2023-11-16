@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useParams } from 'react';
 
 import axios from 'axios';
 
 const Event = () => {
+  const { eventId } = useParams();
 
-  const [events, setEvents] = useState([])
+  const [event, setEvent] = useState([])
+  
   useEffect(() => {
-    axios.get('http://localhost:3000/getEvents')
-      .then(events => { console.log(events.data); setEvents(events.data) })
-      .catch(err => console.log(err))
-  }, [])
+    axios.get(`http://localhost:3001/getEvent/${eventId}`)
+      .then(response => {
+        console.log(response.data);
+        setEvent(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [eventId]);
 
   return <div>Event Details Page
 
@@ -33,8 +40,7 @@ const Event = () => {
           </tr>
         </thead>
         <tbody>
-          {events.map((event) => {
-            return <tr>
+          {<tr>
               <td>{event.name}</td>
               <td>{event.date}</td>
               <td>{event.location}</td>
@@ -43,7 +49,7 @@ const Event = () => {
               <td><a href={event.picture}>Link</a></td>
               <td>{event.verd}</td>
             </tr>
-          })}
+          }
         </tbody>
       </table>
     </div>

@@ -8,7 +8,7 @@ const Home = () => {
 
   const [events, setEvents] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3000/getEvents')
+    axios.get('http://localhost:3001/getEvents')
       .then(events => { console.log(events.data); setEvents(events.data) })
       .catch(err => console.log(err))
   }, [])
@@ -19,7 +19,7 @@ const Home = () => {
       <ul>
         {events.map(event => (
           <li key={event.id}>
-            <Link to={`/event/${event.id}`}>{event.name}</Link>
+            <Link to={`/event/${event.name}`}>{event.name}</Link>
           </li>
         ))}
       </ul>
