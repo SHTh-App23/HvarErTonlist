@@ -8,7 +8,7 @@ const Home = () => {
 
   const [events, setEvents] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3001/getEvents')
+    axios.get('http://localhost:3000/getEvents')
       .then(events => { console.log(events.data); setEvents(events.data) })
       .catch(err => console.log(err))
   }, [])
