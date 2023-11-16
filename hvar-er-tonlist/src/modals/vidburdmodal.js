@@ -3,12 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const VidburdurModal = ({ isOpen, onRequestClose }) => {
-  /*const [eventName, setEventName] = useState('');
-  const [eventDate, setEventDate] = useState('');
-  const [eventPhoto, setEventPhoto] = useState('');
-  const [eventLocation, setEventLocation] = useState('');
-  const [eventPrice, setEventPrice] = useState('');
-  const [eventDescription, setEventDescription] = useState('');*/
 
   // Skra nytt event
   const [name, setName] = useState("");
@@ -19,47 +13,43 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [picture, setPicture] = useState("");
   const [verd, setPrice] = useState("");
   const handleOnSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const result = await axios.post(
-      'http://localhost:3001/registerEvent',
-      { name, date, location, description, organizer, picture, verd },
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-
-    console.warn(result.data);
-
-    if (result.data) {
-      alert("Data saved successfully");
-      setName("");
-      setDate("");
-      setLocation("");
-      setDescription("");
-      setOrganizer("");
-      setPicture("");
-      setPrice("");
+    e.preventDefault();
+  
+    try {
+      const response = await fetch(
+        'http://localhost:3001/registerEvent', 
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, date, location, description, organizer, picture, verd }),
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error(`Failed to save data. Server returned ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.warn(result);
+  
+      if (result) {
+        alert("Data saved successfully");
+        setName("");
+        setDate("");
+        setLocation("");
+        setDescription("");
+        setOrganizer("");
+        setPicture("");
+        setPrice("");
+      }
+    } catch (error) {
+      console.error("Error saving data:", error.message);
+      // Handle the error as needed (e.g., display an error message to the user)
     }
-  } catch (error) {
-    console.error("Error saving data:", error);
-    // Handle the error as needed (e.g., display an error message to the user)
-  }
-};
+  };
 
-
-  /*const handleSave = () => {
-    // Implement your logic to save the event details
-    console.log('Saving event details:', {
-      eventName,
-      eventDate,
-      eventPhoto,
-      eventLocation,
-      eventPrice,
-      eventDescription,
-    });
-    // Close the modal after saving
-    onRequestClose();
-  };*/
 
   return (
     <div>
