@@ -18,7 +18,7 @@ const Navbar = ( {openLoginModal, openLeitModal, openVidburdurModal }) => {
               <Link to="/">Home</Link>
               <Link to="/event">Event</Link>
               <Link to="/profile">Profile</Link>
-              <Button onClick={openVidburdurModal} color="inherit">Nýr vidburdur</Button>
+              <Button onClick={openVidburdurModal} color="inherit">Nýr viðburður</Button>
               <Button onClick={openLeitModal} color="inherit">Leita</Button>
               <Button onClick={openLoginModal} color="inherit">Skrá inn</Button>
             </Toolbar>
