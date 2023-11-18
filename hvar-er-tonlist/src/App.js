@@ -82,7 +82,8 @@ function App() {
         contentLabel='Vidburdur Modal'
         style={modalStyles}
       >
-        <VidburdurModal isOpen={isVidburdurModalOpen} onRequestClose={closeVidburdurModal} />
+        <VidburdurModal isOpen={isVidburdurModalOpen} onRequestClose={closeVidburdurModal}/>
+
       </Modal>
 
       <Modal
