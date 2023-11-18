@@ -26,9 +26,6 @@ app.get('/getEvents', (req, res) => {
   .catch(err => res.json(err))
 })
 
-//const Event = mongoose.model('events', eventModel);
-
-// Skra event
 // Skra event
 app.post("/registerEvent", async (req, resp) => {
   try {

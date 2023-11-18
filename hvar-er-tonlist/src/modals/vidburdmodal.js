@@ -1,6 +1,7 @@
 // VidburdurModal.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import closeVidburdurModal from "../App";
 
 const VidburdurModal = ({ isOpen, onRequestClose }) => {
 
@@ -43,6 +44,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setOrganizer("");
         setPicture("");
         setPrice("");
+        onRequestClose();
       }
     } catch (error) {
       console.error("Error saving data:", error.message);
