@@ -21,6 +21,8 @@ function App() {
 
   const openLoginModal = () => {
     setLoginModalOpen(true);
+    setVidburdurModalOpen(false);
+    setLeitModalOpen(false);
   };
 
   const closeLoginModal = () => {
@@ -29,6 +31,8 @@ function App() {
 
   const openVidburdurModal = () => {
     setVidburdurModalOpen(true);
+    setLeitModalOpen(false);
+    setLoginModalOpen(false);
   };
 
   const closeVidburdurModal = () => {
@@ -37,6 +41,8 @@ function App() {
 
   const openLeitModal = () => {
     setLeitModalOpen(true);
+    setVidburdurModalOpen(false);
+    setLoginModalOpen(false);
   };
 
   const closeLeitModal = () => {
