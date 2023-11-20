@@ -1,5 +1,6 @@
 // LeitModal.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -8,6 +9,13 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   const [ticketPrice, setTicketPrice] = useState(0);
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/getEvents')
+      .then(events => { console.log(events.data); setEvents(events.data) })
+      .catch(err => console.log(err))
+  }, [])
 
   const handleSearch = () => {
     // Implement your search logic here
@@ -25,8 +33,19 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       'to date:',
       toDate
       );
+    const filteredEvents = events.filter(event => {
+      return (
+        (searchQuery === '' || event.name.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        (selectedLocation === '' || event.location === selectedLocation) &&
+        (selectedGenre === '' || event.genre === selectedGenre) &&
+        (event.ticketPrice <= ticketPrice) &&
+        (fromDate === '' || event.date >= fromDate) &&
+        (toDate === '' || event.date <= toDate)
+      );
+    });
+
     // You can pass the search query to the parent component or perform any other action
-    onSearch({ searchQuery, selectedLocation, selectedGenre, ticketPrice, toDate });
+    onSearch({ filteredEvents });
     // Close the modal after searching
     onRequestClose();
   };
