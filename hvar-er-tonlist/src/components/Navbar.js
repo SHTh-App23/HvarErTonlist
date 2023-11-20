@@ -13,10 +13,9 @@ const Navbar = ( {openLoginModal, openLeitModal, openVidburdurModal }) => {
           <AppBar>
             <Toolbar>
               <Typography  sx={{ flexGrow: 1 }}>
-                Hvar er tónlist?
+              <Link to="/events"style={{textDecoration: 'none', color: 'white'}} > Hvar er tónlist? </Link>
               </Typography>
-              <Link to="/">Home</Link>
-              <Link to="/event">Event</Link>
+              <Link to="/events">Home</Link>
               <Link to="/profile">Profile</Link>
               <Button onClick={openVidburdurModal} color="inherit">Nýr viðburður</Button>
               <Button onClick={openLeitModal} color="inherit">Leita</Button>
