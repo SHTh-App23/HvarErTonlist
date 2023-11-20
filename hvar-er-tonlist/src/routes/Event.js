@@ -34,7 +34,7 @@ const Event = () => {
         </thead>
         <tbody>
           {events.map((event) => {
-            return <tr>
+            return <tr key={event._id}>
               <td>{event.name}</td>
               <td>{event.date}</td>
               <td>{event.location}</td>
