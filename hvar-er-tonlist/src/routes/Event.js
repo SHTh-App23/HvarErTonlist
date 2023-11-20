@@ -19,44 +19,43 @@ const Event = () => {
   }, []);
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Event name
-            </th>
-            <th>
-              Date
-            </th>
-            <th>
-              Location
-            </th>
-            <th>Description</th>
-            <th>Organizer</th>
-            <th>Picture link</th>
-            <th>Verd</th>
-          </tr>
-        </thead>
-        <tbody>
-        {events.map(event => {
-        if (event._id == eventID) {
-          return <tr>
-              <td>{event.name}</td>
-              <td>{event.date}</td>
-              <td>{event.location}</td>
-              <td>{event.description}</td>
-              <td>{event.organizer}</td>
-              <td><a href={event.picture}>Link</a></td>
-              <td>{event.verd}</td>
-            </tr>
-        }
-      })}
-        </tbody>
-      </table>
-    </div>
-      
-  );
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Event name</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th>Organizer</th>
+          <th>Picture</th>
+          <th>Verd</th>
+        </tr>
+      </thead>
+      <tbody>
+        {events.map((event) => {
+          // Filter events based on the condition
+          if (event._id === eventID) {
+            return (
+              <tr key={event.id}>
+                <td>{event.name}</td>
+                <td>{event.date}</td>
+                <td>{event.location}</td>
+                <td>{event.description}</td>
+                <td>{event.organizer}</td>
+                <td><img src={event.picture} alt="Description of the image" /></td>
+                <td>{event.verd}</td>
+              </tr>
+            );
+          } else {
+            return null; // If the event doesn't match the condition, return null
+          }
+        })}
+      </tbody>
+    </table>
+  </div>
+);
+
 };
 
 export default Event;
