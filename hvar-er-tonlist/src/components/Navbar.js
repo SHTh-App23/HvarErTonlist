@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg'
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
 
@@ -9,7 +10,9 @@ const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
     <header>
       <div>
       <div>
+        <Link to='/'>
         <img src={logo} alt="Logo" className='logo' />
+        </Link>
       </div>
       <div className='flex gap-small'>
         <button onClick={openVidburdurModal} color="inherit">Nýr viðburður</button>
