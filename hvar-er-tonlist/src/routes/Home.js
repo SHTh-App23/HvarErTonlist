@@ -19,7 +19,7 @@ const Home = () => {
 
     <div className='grid eventsContainer gap-large' >
       {events.map(event => (
-        <Link key={event._id} to={`/event/${event.name}`}>
+        <Link key={event._id} to={`/event/${event._id}`}>
           <div  >
             <div className='event-img-container'>
               <img src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1380&t=st=1700480482~exp=1700481082~hmac=c3f321efc1f2497f49b8dbed4a4612bd0778c19433f06ef21bcecf29d141869d' />

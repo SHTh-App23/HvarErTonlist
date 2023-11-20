@@ -65,7 +65,7 @@ function App() {
     <>
       <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} />
       <Routes>
-        <Route path="/events" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/events/:eventID" element={<Event />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
