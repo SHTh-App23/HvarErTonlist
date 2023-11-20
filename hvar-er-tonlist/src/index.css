@@ -1,10 +1,100 @@
 body {
   margin: 0;
-  margin-top: 6em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family:'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--lightgray);
 }
 
+:root {
+  --lightgray: rgb(244, 244, 244);
+  --lightblue: rgb(127, 157, 247);
+  --darkblue: rgb(36, 91, 180);
+}
+
+img{
+  object-fit: cover;
+  width: 100%;
+}
+
+.logo {
+  height: 3em;
+}
+
+.weight-bold{
+  font-weight: 900;
+}
+.weight-regular{
+  font-weight: 500;
+}
+
+.weight-light{
+  font-weight: 200;
+}
+
+header{
+  background-color: white;
+  padding: 1em;
+  
+  align-items: center;
+  
+  border-bottom: 1px solid var(--darkblue);
+  margin-bottom: 2em;
+  
+}
+header >div{
+  justify-content: space-between;
+  margin: auto;
+  display: flex;
+  max-width: 60em;
+}
+button {
+  padding: .6em;
+  border-radius: 10px;
+  border: 1px solid var(--darkblue);
+  background-color: var(--lightgray);
+  color: var(--darkblue);
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: 'roboto';
+}
+
+.flex{
+  display: flex;
+}
+.gap-small{
+  gap: .6em;
+}
+.gap-large{
+  gap: 1.2em;
+}
+
+.event-img-container img{
+  border-radius: 10px 10px 0 0;
+  height: 12em;
+}
+
+.grid{
+  display: grid;
+}
+.eventsContainer{
+  grid-template-columns: 1fr 1fr;
+  max-width: 60em;
+  margin: auto;
+}
+.eventsContainer a {
+  background-color: white;
+  border: 1px solid var(--darkblue);
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.event-details{
+  padding: 0 1.2em;
+}
+
+.eventsContainer h4,.eventsContainer h5 {
+  color: var(--darkblue);
+}
