@@ -30,6 +30,7 @@ const Profile = () => {
         <th>password</th>
         <th>country</th>
         <th>school</th>
+        <th>id</th>
       </tr>
     </thead>
     <tbody>
@@ -44,6 +45,7 @@ const Profile = () => {
           <td>{user.password}</td>
           <td>{user.country}</td>
           <td>{user.school}</td>
+          <td>{user._id}</td>
         </tr>
       })}
     </tbody>
