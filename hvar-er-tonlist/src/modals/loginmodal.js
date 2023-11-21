@@ -6,35 +6,23 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [events, setEvents] = useState([])
+  const [users, setUsers] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3001/getEvents')
-      .then(events => { console.log(events.data); setEvents(events.data) })
-      .catch(err => console.log(err))
+    axios.get('http://localhost:3001/getUsers')
+    .then(users => {console.log(users.data); setUsers(users.data)})
+    .catch(err => console.log(err))
   }, [])
 
   const handleLogin = () => {
-    
-    axios.post('http://localhost:3001/login', {username, password})
-    .then(response => {
-      if (response && response.data) {
-        console.log(response.data.message);
-        // Additional logic after successful login
-      } else {
-        console.error('Invalid response from server');
-        // Handle unexpected response from server
-      }
-    })
-    .catch(error => {
-      if (error.response && error.response.status === 401) {
-        // Unauthorized - login failed
-        console.error('Invalid username or password');
-      } else {
-        console.error(error.response ? error.response.data.message : 'Error occurred');
-        // Handle other errors
-      }
-    });
-    // Close the modal after login
+
+    const token = 'example_token';
+
+    localStorage.setItem('token', token);
+
+    localStorage.setItem('username', username);
+
+    localStorage.setItem('password', password);
+
     onRequestClose();
   };
 
