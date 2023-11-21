@@ -10,8 +10,6 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://4360szymon:hvarertonlist@hvarertonlistcluster.orieewc.mongodb.net/hvarertonlist?retryWrites=true&w=majority", {
-  //useNewUrlParser: true,
-  //useUnifiedTopology: true,
 });
 
 app.use('/auth', authRoutes);
@@ -47,9 +45,6 @@ app.post("/registerEvent", async (req, resp) => {
     resp.status(500).json({ error: 'Something went wrong' });
   }
 });
-
-
-
 
 const PORT = 3001;
 

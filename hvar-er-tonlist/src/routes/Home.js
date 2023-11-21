@@ -35,7 +35,7 @@ const Home = () => {
                 {event.location}
               </h4>
               <h4 className='weight-bold'>
-                {event.verd}
+                {event.verd} kr.
               </h4>
             </div>
           </div>
