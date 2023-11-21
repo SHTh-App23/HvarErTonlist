@@ -1,11 +1,18 @@
 // VidburdurModal.js
 import React, { useState } from 'react';
-import axios from 'axios';
-import closeVidburdurModal from "../App";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 } from "uuid";
+
 
 const VidburdurModal = ({ isOpen, onRequestClose }) => {
-
-  // Skra nytt event
+  
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -13,9 +20,23 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [organizer, setOrganizer] = useState("");
   const [picture, setPicture] = useState("");
   const [verd, setPrice] = useState("");
+  
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+  // Skra nytt event
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-  
+    uploadFile();
     try {
       const response = await fetch(
         'http://localhost:3001/registerEvent', 
@@ -42,7 +63,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setLocation("");
         setDescription("");
         setOrganizer("");
-        setPicture("");
+        //setPicture("");
         setPrice("");
         onRequestClose();
       }
@@ -69,7 +90,12 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         <br />
         <label>
           Mynd:
-          <input type="text" onChange={(e) => setPicture(e.target.value)} />
+          <input
+            type="file"
+              onChange={(e) => {
+              setImageUpload(e.target.files[0]);
+            }}
+          />
         </label>
         <br />
         <label>
