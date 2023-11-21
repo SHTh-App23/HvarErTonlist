@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoutes = require('./routes/auth')
 const userModel = require("./models/users");
 const eventModel = require("./models/events");
 
@@ -12,6 +13,8 @@ mongoose.connect("mongodb+srv://4360szymon:hvarertonlist@hvarertonlistcluster.or
   //useNewUrlParser: true,
   //useUnifiedTopology: true,
 });
+
+app.use('/auth', authRoutes);
 
 // Fa usera
 app.get('/getUsers', (req, res) => {
