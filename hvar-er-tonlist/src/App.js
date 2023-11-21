@@ -7,6 +7,7 @@ import Event from './routes/Event';
 import Profile from './routes/Profile';
 import LoginModal from './modals/loginmodal';
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 import VidburdurModal from './modals/vidburdmodal';
 import LeitModal from './modals/leitmodal';
@@ -102,7 +103,7 @@ function App() {
           onSearch={handleSearch}
         />
       </Modal>
-    
+      <Footer />
 
 
     </>

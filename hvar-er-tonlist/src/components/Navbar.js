@@ -3,9 +3,6 @@ import logo from './logo.svg'
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
-
-
-
   return (
     <header>
       <div>
@@ -15,9 +12,9 @@ const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
         </Link>
       </div>
       <div className='flex gap-small'>
-        <button onClick={openVidburdurModal} color="inherit">Nýr viðburður</button>
-        <button onClick={openLeitModal} color="inherit">Leita</button>
-        <button onClick={openLoginModal} color="inherit">Skrá inn</button>
+        <button className='border-radius-small font-darkblue border-darkblue' onClick={openVidburdurModal} color="inherit">Nýr viðburður</button>
+        <button className='border-radius-small font-darkblue border-darkblue' onClick={openLeitModal} color="inherit">Leita</button>
+        <button className='border-radius-small font-darkblue border-darkblue' onClick={openLoginModal} color="inherit">Skrá inn</button>
       </div>
       </div>
     </header>
