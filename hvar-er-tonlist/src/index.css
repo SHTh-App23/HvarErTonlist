@@ -10,8 +10,22 @@ body {
 
 :root {
   --lightgray: rgb(244, 244, 244);
-  --lightblue: rgb(127, 157, 247);
+  --lightblue: rgb(212, 222, 255);
   --darkblue: rgb(36, 91, 180);
+}
+
+.font-darkblue {
+  color: var(--darkblue);
+}
+
+.border-darkblue {
+  border: 1px solid var(--darkblue);
+}
+
+.page-container{
+  padding: 0 1.5em;
+  max-width: 60em;
+  margin: auto;
 }
 
 img{
@@ -23,28 +37,34 @@ img{
   height: 3em;
 }
 
-.weight-bold{
+.font-bold{
   font-weight: 900;
 }
-.weight-regular{
+.font-regular{
   font-weight: 500;
 }
 
-.weight-light{
+.font-light{
   font-weight: 200;
+}
+
+.border-radius-small{
+  border-radius: 10px;
+}
+
+.border-radius-large{
+  border-radius: 20px;
 }
 
 header{
   background-color: white;
   padding: 1em;
-  
   align-items: center;
-  
   border-bottom: 1px solid var(--darkblue);
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
   
 }
-header >div{
+header > div{
   justify-content: space-between;
   margin: auto;
   display: flex;
@@ -52,10 +72,7 @@ header >div{
 }
 button {
   padding: .6em;
-  border-radius: 10px;
-  border: 1px solid var(--darkblue);
   background-color: var(--lightgray);
-  color: var(--darkblue);
   font-size: 1.2em;
   font-weight: bold;
   font-family: 'roboto';
@@ -71,30 +88,50 @@ button {
   gap: 1.2em;
 }
 
-.event-img-container img{
-  border-radius: 10px 10px 0 0;
+.event-preview-img{
   height: 12em;
+  border-radius: 20px 20px 0 0;
+}
+
+.event-container > img {
+  height: 30em;
+}
+
+.event-description{
+  line-height: 1.6em;
 }
 
 .grid{
   display: grid;
 }
-.eventsContainer{
+.events-container{
   grid-template-columns: 1fr 1fr;
-  max-width: 60em;
-  margin: auto;
+  
 }
-.eventsContainer a {
+.events-container a {
   background-color: white;
-  border: 1px solid var(--darkblue);
-  border-radius: 10px;
   text-decoration: none;
+}
+
+.event-stats > div{
+  background-color: var(--lightblue);
+  width: min-content;
+  text-wrap: nowrap;
+  padding: 1em;
 }
 
 .event-details{
   padding: 0 1.2em;
 }
 
-.eventsContainer h4,.eventsContainer h5 {
-  color: var(--darkblue);
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4em 0;
+}
+
+footer img{
+  height: 4em;
+  object-fit: contain;
 }

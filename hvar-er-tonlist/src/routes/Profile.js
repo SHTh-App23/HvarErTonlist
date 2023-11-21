@@ -8,9 +8,10 @@ const Profile = () => {
   const [users, setUsers] = useState([])
   useEffect(() => {
     axios.get('http://localhost:3001/getUsers')
-    .then(users => {console.log(users.data); setUsers(users.data)})
+    .then(users => {setUsers(users.data)})
     .catch(err => console.log(err))
   }, [])
+  
   return <div>Profile Page
       <table>
     <thead>
@@ -35,7 +36,7 @@ const Profile = () => {
     </thead>
     <tbody>
       {users.map((user) => {
-        return <tr>
+        return <tr key={user._id}>
           <td>{user.firstName}</td>
           <td>{user.lastName}</td>
           <td>{user.age}</td>

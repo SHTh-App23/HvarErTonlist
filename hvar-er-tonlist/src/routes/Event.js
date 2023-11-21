@@ -4,57 +4,52 @@ import axios from 'axios';
 
 const Event = () => {
   const { eventID } = useParams();
-  console.log(eventID)
 
   const [events, setEvents] = useState([]);
+  const [event, setEvent] = useState([]);
 
   useEffect(() => {
     axios
       .get('http://localhost:3001/getEvents')
       .then((response) => {
-        console.log(response.data);
         setEvents(response.data);
+        
       })
       .catch((err) => console.log(err));
+
   }, []);
 
+
+  useEffect(() => {
+    events.map((event) => {
+      if (event._id === eventID) {
+        setEvent(event)
+        console.log(event)
+      } else {
+        return null; // If the event doesn't match the condition, return null
+      }
+    })
+  }, [events])
+  
+
   return (
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Event name</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Description</th>
-          <th>Organizer</th>
-          <th>Picture</th>
-          <th>Verd</th>
-        </tr>
-      </thead>
-      <tbody>
-        {events.map((event) => {
-          // Filter events based on the condition
-          if (event._id === eventID) {
-            return (
-              <tr key={event.id}>
-                <td>{event.name}</td>
-                <td>{event.date}</td>
-                <td>{event.location}</td>
-                <td>{event.description}</td>
-                <td>{event.organizer}</td>
-                <td><img src={event.picture} alt="Description of the image" /></td>
-                <td>{event.verd}</td>
-              </tr>
-            );
-          } else {
-            return null; // If the event doesn't match the condition, return null
-          }
-        })}
-      </tbody>
-    </table>
-  </div>
-);
+    <div className='page-container'>
+      <div className='event-container'>
+        <img className='border-radius-large border-darkblue' src={event.picture} />
+        <h1 className='font-darkblue'>{event.name}</h1>
+        <h2 className='font-darkblue font-light'>{event.date}</h2>
+        <h2 className='font-darkblue font-regular'>{event.location}</h2>
+        <h2 className='font-darkblue font-bold'>{event.verd}</h2>
+        <div className='event-stats'>
+          <div className='border-radius-small font-darkblue'>
+            Statistics koma hér
+          </div>
+        </div>
+        <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
+      </div>
+
+    </div>
+  );
 
 };
 
