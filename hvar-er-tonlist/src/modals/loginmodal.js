@@ -1,8 +1,11 @@
 // LoginModal.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginModal = ({ isOpen, onRequestClose }) => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,13 +18,18 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
 
   const handleLogin = () => {
 
-    const token = 'example_token';
-
-    localStorage.setItem('token', token);
-
-    localStorage.setItem('username', username);
-
-    localStorage.setItem('password', password);
+    users.map(user => {
+      if (user.username === username) {
+        if (user.password === password) {
+          localStorage.setItem('userId', user._id);
+          navigate('profile');
+        } else {
+          console.log('Password not found.');
+        }
+      } else {
+        console.log('User not found.');
+      }
+    });
 
     onRequestClose();
   };
