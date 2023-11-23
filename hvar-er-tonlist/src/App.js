@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import Modal from 'react-modal';
@@ -50,13 +50,6 @@ function App() {
     setLeitModalOpen(false);
   };
 
-  const modalStyles = {
-    content: {
-      width: '50%', // Set the desired width
-      height: '50%', // Set the desired height
-      margin: 'auto', // Center the modal
-    },
-  };
 
   const handleSearch = (searchQuery) => {
     console.log('Searching for:', searchQuery);
@@ -68,14 +61,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/event/:eventID" element={<Event />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile openVidburdurModal={openVidburdurModal} />}  />
       </Routes>
 
       <Modal
         isOpen={isLoginModalOpen}
         onRequestClose={closeLoginModal}
         contentLabel='Login Modal'
-        style={modalStyles}
       >
         <LoginModal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal} />
       </Modal>
@@ -85,7 +77,6 @@ function App() {
         isOpen={isVidburdurModalOpen}
         onRequestClose={closeVidburdurModal}
         contentLabel='Vidburdur Modal'
-        style={modalStyles}
       >
         <VidburdurModal isOpen={isVidburdurModalOpen} onRequestClose={closeVidburdurModal}/>
 
@@ -95,7 +86,6 @@ function App() {
         isOpen={isLeitModalOpen}
         onRequestClose={closeLeitModal}
         contentLabel="Leit Modal"
-        style={modalStyles}
       >
         <LeitModal
           isOpen={isLeitModalOpen}

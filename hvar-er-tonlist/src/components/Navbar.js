@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg'
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
+const Navbar = ({ openLoginModal, openLeitModal}) => {
   return (
     <header>
       <div>
@@ -12,7 +12,7 @@ const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
         </Link>
       </div>
       <div className='flex gap-small'>
-        <button className='border-radius-small font-darkblue border-darkblue' onClick={openVidburdurModal} color="inherit">Nýr viðburður</button>
+        
         <button className='border-radius-small font-darkblue border-darkblue' onClick={openLeitModal} color="inherit">Leita</button>
         <button className='border-radius-small font-darkblue border-darkblue' onClick={openLoginModal} color="inherit">Skrá inn</button>
       </div>

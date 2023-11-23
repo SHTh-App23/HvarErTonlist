@@ -120,8 +120,21 @@ button {
   padding: 1em;
 }
 
+.ReactModal__Content {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  background-color: #fff;
+}
+
 .event-details{
   padding: 0 1.2em;
+}
+
+.profile-container > img {
+  height: 14em;
+  width: 14em;
+  border-radius: 50%;
 }
 
 footer {
