@@ -9,8 +9,8 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
   const [users, setUsers] = useState([])
   useEffect(() => {
     axios.get('http://localhost:3001/getUsers')
-    .then(users => {console.log(users.data); setUsers(users.data)})
-    .catch(err => console.log(err))
+      .then(users => { console.log(users.data); setUsers(users.data) })
+      .catch(err => console.log(err))
   }, [])
 
   const handleLogin = () => {
@@ -27,23 +27,21 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <br />
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-      </form>
+    <div className='flex flex-column gap-large'>
+      <h1 className='no-margin'>Login</h1>
+
+      <div className='flex flex-column border-radius-small border-darkblue login-input gap-small'>
+        <span>Username</span>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </div>
+      
+      <div className='flex flex-column border-radius-small border-darkblue login-input gap-small'>
+        <span>Password</span>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      </div>
+
+      <button className='border-radius-small' type="button" onClick={handleLogin}>Login</button>
+
     </div>
   );
 };

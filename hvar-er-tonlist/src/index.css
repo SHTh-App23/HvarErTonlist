@@ -55,6 +55,14 @@ img{
 .border-radius-large{
   border-radius: 20px;
 }
+.no-border {
+  border: none;
+}
+
+.login-input{
+  padding: 1em;
+  background-color: var(--lightgray);
+}
 
 header{
   background-color: white;
@@ -119,12 +127,20 @@ button {
   text-wrap: nowrap;
   padding: 1em;
 }
+.flex-column{
+  flex-direction: column;
+}
 
 .ReactModal__Content {
-  width: 50%;
-  height: 50%;
+  max-width: 20em;
+  height: min-content;
   margin: auto;
   background-color: #fff;
+  padding: 2em;
+}
+
+.no-margin{
+  margin: 0;
 }
 
 .event-details{
