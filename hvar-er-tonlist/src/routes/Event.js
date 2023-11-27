@@ -24,18 +24,18 @@ const Event = () => {
     events.map((event) => {
       if (event._id === eventID) {
         setEvent(event)
-        console.log(event)
       } else {
-        return null; // If the event doesn't match the condition, return null
+        return null;
       }
     })
-  }, [events])
+  }, [events, eventID]);
+  
   
 
   return (
     <div className='page-container'>
-      <div className='event-container'>
-        <img className='border-radius-large border-darkblue' src={event.picture} />
+      <div className='event-container'>        
+        <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} />
         <h1 className='font-darkblue'>{event.name}</h1>
         <h2 className='font-darkblue font-light'>{event.date}</h2>
         <h2 className='font-darkblue font-regular'>{event.location}</h2>

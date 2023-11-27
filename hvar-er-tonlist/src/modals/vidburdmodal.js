@@ -18,36 +18,54 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [organizer, setOrganizer] = useState("");
-  const [picture, setPicture] = useState("");
   const [verd, setPrice] = useState("");
   
+  const [imageUrls, setImageUrls] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-  const [imageUrls, setImageUrls] = useState([]);
   const imagesListRef = ref(storage, "images/");
+
   const uploadFile = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrls((prev) => [...prev, url]);
-      });
+    return new Promise((resolve, reject) => {
+      if (imageUpload == null) {
+        reject("No image to upload");
+      } else {
+        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+        uploadBytes(imageRef, imageUpload)
+          .then((snapshot) => {
+            getDownloadURL(snapshot.ref)
+              .then((url) => {
+                resolve(url); // Resolve the promise with the public URL
+              })
+              .catch((error) => reject(error));
+          })
+          .catch((error) => reject(error));
+      }
     });
   };
+  
+
   // Skra nytt event
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    uploadFile();
+  
     try {
-      const response = await fetch(
-        'http://localhost:3001/registerEvent', 
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, date, location, description, organizer, picture, verd }),
-        }
-      );
+      const imageUrl = await uploadFile(); // Wait for image upload to complete
+  
+      const response = await fetch('http://localhost:3001/registerEvent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          date,
+          location,
+          description,
+          imageUrls: [imageUrl], // Send the public URL in an array
+          organizer,
+          verd,
+        }),
+      });
   
       if (!response.ok) {
         throw new Error(`Failed to save data. Server returned ${response.status}`);
@@ -63,15 +81,15 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setLocation("");
         setDescription("");
         setOrganizer("");
-        //setPicture("");
+        setImageUrls([]); // Clear image URLs after saving
         setPrice("");
         onRequestClose();
-      }
+      }  
     } catch (error) {
       console.error("Error saving data:", error.message);
       // Handle the error as needed (e.g., display an error message to the user)
     }
-  };
+  };  
 
 
   return (
@@ -93,6 +111,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
           <input
             type="file"
               onChange={(e) => {
+              //setImageUrls(e.target.files[0]);
               setImageUpload(e.target.files[0]);
             }}
           />

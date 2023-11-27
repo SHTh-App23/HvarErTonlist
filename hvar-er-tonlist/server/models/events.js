@@ -7,8 +7,8 @@ const eventSchema = new mongoose.Schema({
     location: String,
     description: String,
     organizer: String,
-    picture: String,
-    verd: Number
+    imageUrls: [String],
+    verd: Number,
 })
 
 const eventModel = mongoose.model("events", eventSchema)
