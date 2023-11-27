@@ -5,19 +5,34 @@ import { useNavigate } from 'react-router-dom';
 
 const Profile = ({openVidburdurModal}) => {
   const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
+  const isAuthenticated = Boolean(userId);
 
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getUsers')
-      .then(users => { setUser(users.data[0]) })
-      .catch(err => console.log(err))
-  }, [])
+    if(!isAuthenticated) {
+      console.log('You are not authorized.')
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      axios.get('http://localhost:3001/getUsers')
+        .then(users => { setUser(users.data[0]) })
+        .catch(err => console.log(err))
+    }
+  }, [isAuthenticated]);
 
   const skraUt = () => {
     localStorage.clear();
     navigate('/');
     window.location.reload();
+  }
+
+  if (!isAuthenticated) {
+    return null;
   }
 
   return (
