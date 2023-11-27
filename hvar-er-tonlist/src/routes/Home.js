@@ -20,7 +20,7 @@ const Home = () => {
         {events.map(event => (
           <Link className='border-radius-large border-darkblue' key={event._id} to={`/event/${event._id}`}>
             <div className='font-darkblue'>
-              <img className='event-preview-img border-darkblue' src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1380&t=st=1700480482~exp=1700481082~hmac=c3f321efc1f2497f49b8dbed4a4612bd0778c19433f06ef21bcecf29d141869d' />
+              <img className='event-preview-img border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} />
               <div className='event-details'>
                 <h3 className='weight-bold'>
                   {event.name}
