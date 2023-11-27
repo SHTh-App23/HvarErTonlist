@@ -21,7 +21,7 @@ const Navbar = ({ openLoginModal, openLeitModal, openVidburdurModal }) => {
           <button className='border-radius-small font-darkblue border-darkblue' onClick={openLoginModal} color="inherit">Skrá inn</button>
         ) : (
           <Link to='profile'>
-            Prófíll
+            <button className='border-radius-small font-darkblue border-darkblue'>Prófíll</button>
           </Link>
         )}
       </div>

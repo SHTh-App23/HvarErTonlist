@@ -35,11 +35,11 @@ const Event = () => {
   return (
     <div className='page-container'>
       <div className='event-container'>        
-        <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} />
+        <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>
         <h1 className='font-darkblue'>{event.name}</h1>
         <h2 className='font-darkblue font-light'>{event.date}</h2>
         <h2 className='font-darkblue font-regular'>{event.location}</h2>
-        <h2 className='font-darkblue font-bold'>{event.verd}</h2>
+        <h2 className='font-darkblue font-bold'>{event.verd} kr.</h2>
         <div className='event-stats'>
           <div className='border-radius-small font-darkblue'>
             Statistics koma hér

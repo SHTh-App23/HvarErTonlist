@@ -38,7 +38,7 @@ const Profile = ({openVidburdurModal}) => {
   return (
     <div className='page-container'>
       <div className='profile-container'>
-        <img src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1380&t=st=1700480482~exp=1700481082~hmac=c3f321efc1f2497f49b8dbed4a4612bd0778c19433f06ef21bcecf29d141869d' />
+        <img src='https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg?w=1380&t=st=1700480482~exp=1700481082~hmac=c3f321efc1f2497f49b8dbed4a4612bd0778c19433f06ef21bcecf29d141869d' alt='https://picsum.photos/200'/>
         <h1 className='font-darkblue'>@{user.username}</h1>
         <h2 className='font-darkblue font-light'><b>Land: </b>{user.country}</h2>
         <h2 className='font-darkblue font-light'><b>Skóli: </b>{user.school}</h2>

@@ -20,7 +20,7 @@ const Home = () => {
         {events.map(event => (
           <Link className='border-radius-large border-darkblue' key={event._id} to={`/event/${event._id}`}>
             <div className='font-darkblue'>
-              <img className='event-preview-img border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} />
+              <img className='event-preview-img border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>
               <div className='event-details'>
                 <h3 className='weight-bold'>
                   {event.name}
