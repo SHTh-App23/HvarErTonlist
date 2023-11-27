@@ -1,16 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Profile = ({openVidburdurModal}) => {
+  const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
+  const isAuthenticated = Boolean(userId);
 
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getUsers')
-      .then(users => { setUser(users.data[0]) })
-      .catch(err => console.log(err))
-  }, [])
+    if(!isAuthenticated) {
+      console.log('You are not authorized.')
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      axios.get('http://localhost:3001/getUsers')
+        .then(users => { setUser(users.data[0]) })
+        .catch(err => console.log(err))
+    }
+  }, [isAuthenticated]);
+
+  const skraUt = () => {
+    localStorage.clear();
+    navigate('/');
+    window.location.reload();
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className='page-container'>
@@ -22,7 +45,7 @@ const Profile = ({openVidburdurModal}) => {
         <h2 className='font-darkblue font-light'><b>Aldur: </b>{user.age}</h2>
         <h3 className='font-darkblue font-light'>{user.bio}</h3>
         <button className='border-radius-small font-darkblue border-darkblue' onClick={openVidburdurModal} color="inherit">Nýr viðburður</button><br/><br/>
-        <button className='border-radius-small font-darkblue border-darkblue' color="inherit">Skrá út</button>
+        <button className='border-radius-small font-darkblue border-darkblue' onClick={skraUt} color="inherit">Skrá út</button>
       </div>
     </div>
   );
