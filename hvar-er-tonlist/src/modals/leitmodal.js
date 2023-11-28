@@ -51,80 +51,54 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   };
 
   return (
-    /* 
-    
-        <div className='flex flex-column gap-large'>
-          <h1 className='no-margin'>Login</h1>
-          <input placeholder='Username' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-          <input placeholder='Password' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <div className='flex gap-small'>
-            <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Skrá inn</button>
-            <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Búa til aðgang</button>
-          </div>
-        </div>
-    
-    */
 
-      <div className='flex flex-column gap-large'>
-      <h1>Leita</h1>
+    <div className='flex flex-column gap-large'>
+      <h1 className='font-darkblue no-margin'>Leita</h1>
+
+      <input placeholder='Leitarorð' className='border-radius-small text-input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+
+      <select className='border-radius-small text-input' value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
+        <option value="">Allar staðsetningar</option>
+        <option value="Gaukurinn">Gaukurinn</option>
+        <option value="Iðnó">Iðnó</option>
+      </select>
+      <select className='border-radius-small text-input' value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
+        <option value="">Allar tegundir</option>
+        <option value="Hip hop">Hip hop</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Classical">Classical</option>
+      </select>
+      <label className='font-size-medium font-darkblue'>
+        <b>Miðaverð</b> {ticketPrice}kr
+        <br />
+        <input className='max-width'
+          type="range"
+          min="0"
+          max="10000"
+          step="500"
+          value={ticketPrice}
+          onChange={(e) => setTicketPrice(parseInt(e.target.value))}
+        />
+      </label>
+      <div className='grid gap-small two-row-grid'>
+        <h3 className='no-margin font-darkblue'>Frá</h3>
+        <h3 className='no-margin font-darkblue'>Til</h3>
+        <input
+          className='border-darkblue border-radius-small font-size-medium date-input'
+          type="date"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+        />
         
-          <input placeholder='Leitarorð' className='border-radius-small text-input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
-        
-        <label>
-          Staðsetning:
-          <select
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-          >
-            <option value="">Select...</option>
-            <option value="Gaukurinn">Gaukurinn</option>
-            <option value="Iðnó">Iðnó</option>
-          </select>
-        </label>
-        <label>
-          Tónlistartegund:
-          <select
-            value={selectedGenre}
-            onChange={(e) => setSelectedGenre(e.target.value)}
-          >
-            <option value="">Select...</option>
-            <option value="Hip hop">Hip hop</option>
-            <option value="Jazz">Jazz</option>
-            <option value="Classical">Classical</option>
-          </select>
-        </label>
-        <label>
-          Miðaverð: {ticketPrice}kr
-          <br />
-          <input
-            type="range"
-            min="0"
-            max="10000"
-            step="1"
-            value={ticketPrice}
-            onChange={(e) => setTicketPrice(parseInt(e.target.value))}
-          />
-        </label>
-        <label>
-          Frá:
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-        </label>
-        <label>
-          Til:
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
-        </label>
-        <button type="button" onClick={handleSearch}>
-          Search
-        </button>
+        <input className='border-darkblue border-radius-small font-size-medium date-input'
+          type="date"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+        />
       </div>
+
+      <button className='border-radius-small border-darkblue' type="button" onClick={handleSearch}>Search</button>
+    </div>
   );
 };
 
