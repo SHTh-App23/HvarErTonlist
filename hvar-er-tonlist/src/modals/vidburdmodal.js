@@ -19,9 +19,9 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [description, setDescription] = useState("");
   const [organizer, setOrganizer] = useState("");
   const [verd, setPrice] = useState("");
+  const [imageUpload, setImageUpload] = useState(null);
   
   const [imageUrls, setImageUrls] = useState("");
-  const [imageUpload, setImageUpload] = useState(null);
   const imagesListRef = ref(storage, "images/");
 
   const uploadFile = () => {

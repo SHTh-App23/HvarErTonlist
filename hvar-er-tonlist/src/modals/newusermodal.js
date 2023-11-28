@@ -16,12 +16,12 @@ const NewUserModal = ({isOpen, onRequestClose}) => {
     const [password, setPassword] = useState('');
     const [passwordII, setPasswordII] = useState('');
     const [age, setAge] = useState('');
-    const [bio, setBio] = useState('');
     const [country, setCountry] = useState('');
     const [school, setSchool] = useState('');
+    const [imageUpload, setImageUpload] = useState(null);
+    const [bio, setBio] = useState('');
 
     const [imageUrls, setImageUrls] = useState("");
-    const [imageUpload, setImageUpload] = useState(null);
     const imagesListRef = ref(storage, "userImages/");
 
     const uploadFile = () => {
@@ -46,6 +46,10 @@ const NewUserModal = ({isOpen, onRequestClose}) => {
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         try {
+            if (password !== passwordII) {
+                alert("Passwords do not match.");
+                return;
+              }
             const imageUrl = await uploadFile(); // Wait for image upload to complete
         
             const response = await fetch('http://localhost:3001/registerUser', {
@@ -55,13 +59,12 @@ const NewUserModal = ({isOpen, onRequestClose}) => {
               },
               body: JSON.stringify({
                 username,
-                age,
-                bio,
-                country,
-                imageUrls: [imageUrl], // Send the public URL in an array
-                school,
                 password,
-                passwordII
+                age,
+                country,
+                school,
+                imageUrls: [imageUrl], // Send the public URL in an array
+                bio
               }),
             });
         
@@ -128,7 +131,7 @@ const NewUserModal = ({isOpen, onRequestClose}) => {
                     type="file"
                     onChange={(e) => {
                         //setImageUrls(e.target.files[0]);
-                        //setImageUpload(e.target.files[0]);
+                        setImageUpload(e.target.files[0]);
                     }}/>
                 </label> <br/>
                 <button type="button" onClick={handleOnSubmit}>
