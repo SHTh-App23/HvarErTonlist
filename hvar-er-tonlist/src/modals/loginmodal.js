@@ -29,19 +29,12 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
   return (
     <div className='flex flex-column gap-large'>
       <h1 className='no-margin'>Login</h1>
-
-      <div className='flex flex-column border-radius-small border-darkblue login-input gap-small'>
-        <span>Username</span>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input placeholder='Username' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input placeholder='Password' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <div className='flex gap-small'>
+        <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Skrá inn</button>
+        <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Búa til aðgang</button>
       </div>
-      
-      <div className='flex flex-column border-radius-small border-darkblue login-input gap-small'>
-        <span>Password</span>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </div>
-
-      <button className='border-radius-small' type="button" onClick={handleLogin}>Login</button>
-
     </div>
   );
 };
