@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedLocation, setSelectedLocation] = useState(''); 
+  const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [ticketPrice, setTicketPrice] = useState(0);
   const [fromDate, setFromDate] = useState('');
@@ -32,7 +32,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       fromDate,
       'to date:',
       toDate
-      );
+    );
     const filteredEvents = events.filter(event => {
       return (
         (searchQuery === '' || event.name.toLowerCase().includes(searchQuery.toLowerCase())) &&
@@ -51,18 +51,25 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   };
 
   return (
-    <div>
-      <h2>Leita</h2>
-      <form>
-        <label>
-          Leitarorð:
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </label>
-        <br />
+    /* 
+    
+        <div className='flex flex-column gap-large'>
+          <h1 className='no-margin'>Login</h1>
+          <input placeholder='Username' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input placeholder='Password' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <div className='flex gap-small'>
+            <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Skrá inn</button>
+            <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Búa til aðgang</button>
+          </div>
+        </div>
+    
+    */
+
+      <div className='flex flex-column gap-large'>
+      <h1>Leita</h1>
+        
+          <input placeholder='Leitarorð' className='border-radius-small text-input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+        
         <label>
           Staðsetning:
           <select
@@ -74,7 +81,6 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             <option value="Iðnó">Iðnó</option>
           </select>
         </label>
-        <br />
         <label>
           Tónlistartegund:
           <select
@@ -87,7 +93,6 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             <option value="Classical">Classical</option>
           </select>
         </label>
-        <br />
         <label>
           Miðaverð: {ticketPrice}kr
           <br />
@@ -100,7 +105,6 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             onChange={(e) => setTicketPrice(parseInt(e.target.value))}
           />
         </label>
-        <br />
         <label>
           Frá:
           <input
@@ -109,7 +113,6 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             onChange={(e) => setFromDate(e.target.value)}
           />
         </label>
-        <br />
         <label>
           Til:
           <input
@@ -118,12 +121,10 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             onChange={(e) => setToDate(e.target.value)}
           />
         </label>
-        <br />
         <button type="button" onClick={handleSearch}>
           Search
         </button>
-      </form>
-    </div>
+      </div>
   );
 };
 
