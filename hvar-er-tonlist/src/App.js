@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 
 import VidburdurModal from './modals/vidburdmodal';
 import LeitModal from './modals/leitmodal';
+import NewUserModal from './modals/newusermodal';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
@@ -19,6 +20,7 @@ function App() {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isVidburdurModalOpen, setVidburdurModalOpen] = useState(false);
   const [isLeitModalOpen, setLeitModalOpen] = useState(false);
+  const [isNewUserModalOpen, setNewUserModalOpen] = useState(false);
 
   const openLoginModal = () => {
     setLoginModalOpen(true);
@@ -50,6 +52,14 @@ function App() {
     setLeitModalOpen(false);
   };
 
+  const openNewUserModal = () => {
+    setNewUserModalOpen(true);
+  };
+
+  const closeNewUserModal = () => {
+    setNewUserModalOpen(false);
+  }
+
 
   const handleSearch = (searchQuery) => {
     console.log('Searching for:', searchQuery);
@@ -57,7 +67,7 @@ function App() {
 
   return (
     <>
-      <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} />
+      <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} openNewUserModal={openNewUserModal} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/event/:eventID" element={<Event />} />
@@ -69,7 +79,7 @@ function App() {
         onRequestClose={closeLoginModal}
         contentLabel='Login Modal'
       >
-        <LoginModal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal} />
+        <LoginModal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal} openNewUserModal={openNewUserModal} />
       </Modal>
 
 
@@ -93,6 +103,16 @@ function App() {
           onSearch={handleSearch}
         />
       </Modal>
+
+      <Modal
+        isOpen={isNewUserModalOpen}
+        onRequestClose={closeNewUserModal}
+        contentLabel='NewUser Modal'
+      >
+        <NewUserModal isOpen={isNewUserModalOpen} onRequestClose={closeNewUserModal}/>
+
+      </Modal>
+
       <Footer />
 
 

@@ -46,6 +46,25 @@ app.post("/registerEvent", async (req, resp) => {
   }
 });
 
+//Skra user
+app.post("/registerUser", async (req, resp) => {
+  try {
+    const user = new userModel(req.body);
+    let result = await user.save();
+    result = result.toObject();
+    if (result) {
+      delete result.password;
+      resp.send(req.body);
+      console.log(result);
+    } else {
+      console.log("User already register");
+    }
+  } catch (e) {
+    console.error("Error saving user:", e);
+    resp.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
 const PORT = 3001;
 
 app.listen(PORT, () => {

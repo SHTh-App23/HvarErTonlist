@@ -3,21 +3,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const LoginModal = ({ isOpen, onRequestClose }) => {
+const LoginModal = ({ isOpen, onRequestClose, openNewUserModal }) => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:3001/getUsers')
-    .then(users => {console.log(users.data); setUsers(users.data)})
-    .catch(err => console.log(err))
-  }, [])
+      .then(users => { console.log(users.data); setUsers(users.data) })
+      .catch(err => console.log(err));
+  }, []);
 
   const handleLogin = () => {
-
     users.map(user => {
       if (user.username === username) {
         if (user.password === password) {
@@ -52,6 +51,8 @@ const LoginModal = ({ isOpen, onRequestClose }) => {
           Login
         </button>
       </form>
+      Ertu ekki með aðgang? <br></br>
+      <button onClick={openNewUserModal}>Stofnaðu nýjan</button>
     </div>
   );
 };
