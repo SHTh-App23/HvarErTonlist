@@ -71,7 +71,8 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       <label className='font-size-medium font-darkblue'>
         <b>Miðaverð</b> {ticketPrice}kr
         <br />
-        <input className='max-width'
+        <input 
+          className='max-width'
           type="range"
           min="0"
           max="10000"
@@ -89,14 +90,13 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
           value={fromDate}
           onChange={(e) => setFromDate(e.target.value)}
         />
-        
-        <input className='border-darkblue border-radius-small font-size-medium date-input'
+        <input
+          className='border-darkblue border-radius-small font-size-medium date-input'
           type="date"
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
         />
       </div>
-
       <button className='border-radius-small border-darkblue' type="button" onClick={handleSearch}>Search</button>
     </div>
   );
