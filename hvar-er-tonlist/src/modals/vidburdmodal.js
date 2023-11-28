@@ -12,14 +12,14 @@ import { v4 } from "uuid";
 
 
 const VidburdurModal = ({ isOpen, onRequestClose }) => {
-  
+
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [organizer, setOrganizer] = useState("");
-  const [verd, setPrice] = useState("");
-  
+  const [verd, setVerd] = useState("");
+
   const [imageUrls, setImageUrls] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
   const imagesListRef = ref(storage, "images/");
@@ -42,15 +42,15 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
       }
     });
   };
-  
+
 
   // Skra nytt event
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const imageUrl = await uploadFile(); // Wait for image upload to complete
-  
+
       const response = await fetch('http://localhost:3001/registerEvent', {
         method: 'POST',
         headers: {
@@ -66,14 +66,14 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
           verd,
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Failed to save data. Server returned ${response.status}`);
       }
-  
+
       const result = await response.json();
       console.warn(result);
-  
+
       if (result) {
         alert("Data saved successfully");
         setName("");
@@ -82,60 +82,73 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setDescription("");
         setOrganizer("");
         setImageUrls([]); // Clear image URLs after saving
-        setPrice("");
+        setVerd("");
         onRequestClose();
-      }  
+      }
     } catch (error) {
       console.error("Error saving data:", error.message);
       // Handle the error as needed (e.g., display an error message to the user)
     }
-  };  
+  };
 
 
   return (
-    <div>
-      <h2>Nýr viðburður</h2>
-      <form>
-        <label>
-          Titill:
-          <input type="text"  onChange={(e) => setName(e.target.value)} />
-        </label>
+    /*
+    <div className='flex flex-column gap-large'>
+      <h1 className='no-margin'>Login</h1>
+      <input placeholder='Username' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <input placeholder='Password' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <div className='flex gap-small'>
+        <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Skrá inn</button>
+        <button className='border-radius-small border-darkblue' type="button" onClick={openNewUserModal}>Búa til aðgang</button>
+      </div>
+    </div>
+    */
+    <div className='flex flex-column gap-large'>
+      <h1 className='no-margin font-darkblue'>Nýr viðburður</h1>
+
+      <input placeholder='Titill' className='border-radius-small text-input' type="text" onChange={(e) => setName(e.target.value)} />
+
+      <textarea className='background-lightgray font-size-medium border-radius-small border-lightblue padding-small font-family' placeholder='Lýsing' onChange={(e) => setDescription(e.target.value)} />
+
+      <select className='border-radius-small text-input max-width' value={location} onChange={(e) => setLocation(e.target.value)}>
+        <option value="">Staðsetning</option>
+        <option value="Gaukurinn">Gaukurinn</option>
+        <option value="Iðnó">Iðnó</option>
+      </select>
+
+      <div className='grid gap-small'>
+        <h3 className='no-margin font-darkblue'>Dagsetning</h3>
+        <input className='date-input font-size-medium border-radius-small border-darkblue' type="date" onChange={(e) => setDate(e.target.value)} />
+      </div>
+
+      <div className='grid gap-small'>
+        <h3 className='no-margin font-darkblue'>Mynd</h3>
+        <input className='font-size-medium'
+          type="file"
+          onChange={(e) => {
+            //setImageUrls(e.target.files[0]);
+            setImageUpload(e.target.files[0]);
+          }}
+        />
+      </div>
+
+
+
+      <label className='font-size-medium font-darkblue'>
+        <b>Miðaverð</b> {verd}kr
         <br />
-        <label>
-          Dagsetning:
-          <input type="text" onChange={(e) => setDate(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Mynd:
-          <input
-            type="file"
-              onChange={(e) => {
-              //setImageUrls(e.target.files[0]);
-              setImageUpload(e.target.files[0]);
-            }}
-          />
-        </label>
-        <br />
-        <label>
-          Staðsetning:
-          <input type="text" onChange={(e) => setLocation(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Verð:
-          <input type="text" onChange={(e) => setPrice(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Lýsing:
-          <textarea onChange={(e) => setDescription(e.target.value)} />
-        </label>
-        <br />
-        <button type="button" onClick={handleOnSubmit}>
-          Save
-        </button>
-      </form>
+        <input
+          className='max-width'
+          type="range"
+          min="0"
+          max="10000"
+          step="500"
+          value={verd}
+          onChange={(e) => setVerd(parseInt(e.target.value))}
+        />
+      </label>
+      <button className='border-radius-small border-darkblue' type="button" onClick={handleOnSubmit}>Save</button>
     </div>
   );
 };
