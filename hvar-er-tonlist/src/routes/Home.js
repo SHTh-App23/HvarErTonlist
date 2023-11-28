@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <div className='page-container'>
-      <div className='grid events-container gap-large ' >
+      <div className='grid two-row-grid events-container gap-large ' >
         {events.map(event => (
           <Link className='border-radius-large border-darkblue' key={event._id} to={`/event/${event._id}`}>
             <div className='font-darkblue'>

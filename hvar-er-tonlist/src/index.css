@@ -42,6 +42,13 @@ img{
   height: 3em;
 }
 
+.max-width{
+  width: 100%;
+}
+.max-height{
+  height: 100%;
+}
+
 .font-bold{
   font-weight: 900;
 }
@@ -49,8 +56,15 @@ img{
   font-weight: 500;
 }
 
+.date-input {
+  padding: .6em;
+}
+
 .font-light{
   font-weight: 200;
+}
+.font-size-medium {
+  font-size: 1.4em;
 }
 
 .border-radius-small{
@@ -128,7 +142,7 @@ button {
 .grid{
   display: grid;
 }
-.events-container{
+.two-row-grid{
   grid-template-columns: 1fr 1fr;
   
 }
