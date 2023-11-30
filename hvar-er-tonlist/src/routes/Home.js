@@ -12,6 +12,7 @@ const Home = () => {
         setEvents(response.data);
       })
       .catch((err) => console.log(err));
+      
   }, []);
 
   return (
@@ -26,7 +27,7 @@ const Home = () => {
                   {event.name}
                 </h3>
                 <h4 className='weight-light'>
-                  {event.date}
+                  {new Date(event.date).toLocaleDateString()}
                 </h4>
                 <h4 className='weight-regular'>
                   {event.location}

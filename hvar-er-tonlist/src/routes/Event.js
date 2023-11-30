@@ -24,12 +24,14 @@ const Event = () => {
     events.map((event) => {
       if (event._id === eventID) {
         setEvent(event)
+        
       } else {
         return null;
       }
     })
   }, [events, eventID]);
   
+  const eventDate = new Date(event.date)
   
 
   return (
@@ -37,7 +39,7 @@ const Event = () => {
       <div className='event-container'>        
         <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>
         <h1 className='font-darkblue'>{event.name}</h1>
-        <h2 className='font-darkblue font-light'>{event.date}</h2>
+        <h2 className='font-darkblue font-light'>{eventDate.toLocaleDateString()}</h2>
         <h2 className='font-darkblue font-regular'>{event.location}</h2>
         <h2 className='font-darkblue font-bold'>{event.verd} kr.</h2>
         <div className='event-stats'>

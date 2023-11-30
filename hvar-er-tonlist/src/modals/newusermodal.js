@@ -75,13 +75,7 @@ const NewUserModal = ({ isOpen, onRequestClose }) => {
 
       if (result) {
         alert("Data saved successfully");
-        setUsername("");
-        setPassword("");
-        setPasswordII("");
-        setAge("");
-        setCountry("");
-        setSchool("");
-        setImageUrls([]); // Clear image URLs after saving
+        
         onRequestClose();
       }
     } catch (error) {
