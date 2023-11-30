@@ -71,7 +71,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/event/:eventID" element={<Event />} />
-        <Route path="/profile" element={<Profile openVidburdurModal={openVidburdurModal} />}  />
+        <Route path="/profile/:userID" element={<Profile openVidburdurModal={openVidburdurModal} />}  />
       </Routes>
 
       <Modal

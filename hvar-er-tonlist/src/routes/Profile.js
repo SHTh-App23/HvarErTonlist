@@ -1,29 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const Profile = ({openVidburdurModal}) => {
+  const { userID } = useParams();
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
   const isAuthenticated = Boolean(userId);
 
+  const [users, setUsers] = useState([])
   const [user, setUser] = useState([])
 
   useEffect(() => {
-    if(!isAuthenticated) {
+    if (!isAuthenticated) {
       console.log('You are not authorized.')
       navigate('/');
     }
-  }, [isAuthenticated, navigate]);
-
-  useEffect(() => {
     if (isAuthenticated) {
       axios.get('http://localhost:3001/getUsers')
-      .then(users => { setUser(users.data[1]) })
-      .catch(err => console.log(err))
+        .then(users => {
+          console.log(users.data); // Add this line to check the received users
+          setUsers(users.data);
+        })
+        .catch(err => console.log(err))
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
+  
+
+  useEffect(() => {
+    const foundUser = users.find(u => u._id === userID);
+    if (foundUser) {
+      setUser(foundUser);
+    } else {
+      console.log('User not found');
+      // Optionally, you might want to redirect the user to a not-found page or handle it differently
+    }
+  }, [users, userID]);
+  
 
   const skraUt = () => {
     localStorage.clear();
