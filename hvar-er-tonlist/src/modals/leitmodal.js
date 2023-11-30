@@ -97,7 +97,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
           onChange={(e) => setToDate(e.target.value)}
         />
       </div>
-      <button className='border-radius-small border-darkblue' type="button" onClick={handleSearch}>Search</button>
+      <button className='border-radius-small border-darkblue' type="button" onClick={handleSearch}>Leita</button>
     </div>
   );
 };

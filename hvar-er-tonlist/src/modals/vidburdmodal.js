@@ -19,6 +19,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [description, setDescription] = useState("");
   const [organizer, setOrganizer] = useState("");
   const [verd, setVerd] = useState("");
+  const [imageUpload, setImageUpload] = useState('')
 
   const [imageUrls, setImageUrls] = useState("");
   const imagesListRef = ref(storage, "images/");
@@ -135,7 +136,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
           onChange={(e) => setVerd(parseInt(e.target.value))}
         />
       </label>
-      <button className='border-radius-small border-darkblue' type="button" onClick={handleOnSubmit}>Save</button>
+      <button className='border-radius-small border-darkblue' type="button" onClick={handleOnSubmit}>Búa til viðburð</button>
     </div>
   );
 };
