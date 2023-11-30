@@ -21,7 +21,7 @@ const LoginModal = ({ isOpen, onRequestClose, openNewUserModal }) => {
       if (user.username === username) {
         if (user.password === password) {
           localStorage.setItem('userId', user._id);
-          navigate('profile');
+          navigate(`profile/${user._id}`);
         } else {
           console.log('Password not found.');
         }
