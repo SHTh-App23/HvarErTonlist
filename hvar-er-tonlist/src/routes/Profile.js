@@ -58,7 +58,6 @@ const Profile = ({openVidburdurModal}) => {
         <h2 className='font-darkblue font-light'><b>Land: </b>{user.country}</h2>
         <h2 className='font-darkblue font-light'><b>Skóli: </b>{user.school}</h2>
         <h2 className='font-darkblue font-light'><b>Aldur: </b>{user.age}</h2>
-        <h3 className='font-darkblue font-light'>{user.bio}</h3>
         <button className='border-radius-small font-darkblue border-darkblue' onClick={openVidburdurModal} color="inherit">Nýr viðburður</button><br/><br/>
         <button className='border-radius-small font-darkblue border-darkblue' onClick={skraUt} color="inherit">Skrá út</button>
       </div>
