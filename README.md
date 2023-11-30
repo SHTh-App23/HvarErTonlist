@@ -1,7 +1,7 @@
 ## HvarErTonlist
 Við ætlum að gera app sem sýnir tónlistaviðburði í Íslandi. Notandi getur búið til account og skráð sig inn, skráð gögn um sig og fengið meðmælingar um viðburði, fundið tónleika sem hann hefur áhuga, séð hvaða- og hverskonar fólk eru að mæta á viðburði, og líka skráð sína eigin tónleika inn á vefsíðuna. Það verður síunarkerfi, og hægt verður að leita að viðburðum eftir leitarorði, dagsetningu, tónlistartegund, miðaverði, og staðsetningu.
 
-Stack: React, MongoDB, Firebase
+Stack: MongoDB, Express.js, React, Node.js, Firebase
 
 Figma:
 ![alt text](https://github.com/SHTh-App23/HvarErTonlist/blob/main/Myndir/Screenshot%20(4).png)
