@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [ticketPrice, setTicketPrice] = useState(0);
@@ -19,23 +20,13 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
 
   const handleSearch = () => {
     // Implement your search logic here
-    console.log(
-      'Searching for:',
-      searchQuery,
-      'in location',
-      selectedLocation,
-      'with genre',
-      selectedGenre,
-      'with ticket price',
-      ticketPrice,
-      'from date',
-      fromDate,
-      'to date:',
-      toDate
-    );
-    const filteredEvents = events.filter((event) => event.name == 'searchQuery');
+  
 
     console.log(fromDate, toDate)
+
+    filteredEvents = events;
+
+
 
     events.map(event => {
       if (event.name.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery == '') {
@@ -44,13 +35,21 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             
           }*/
           if (event.verd <= ticketPrice || ticketPrice == 0) {
-            if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) ) {
-              console.log(event)
+            if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) || fromDate == '') {
+  
+              if (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) || toDate == '') {
+                
+                if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) ) {
+                  
+                }
+              }
             }
+            
           }
         }
       }
     })
+    console.log(filteredEvents)
 
     // You can pass the search query to the parent component or perform any other action
     onSearch({ filteredEvents });
