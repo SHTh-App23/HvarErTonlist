@@ -33,13 +33,20 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       'to date:',
       toDate
     );
-    console.log(events, searchQuery)
     const filteredEvents = events.filter((event) => event.name == 'searchQuery');
 
+    console.log(fromDate, toDate)
+
     events.map(event => {
-      console.log(event.name)
-      if (event.name == searchQuery) {
-        console.log('found event')
+      if (event.name.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery == '') {
+        if (event.location == selectedLocation || selectedLocation == '') {
+          /*if (event.genre == selectedGenre || selectedGenre == '') {
+            
+          }*/
+          if (event.verd <= ticketPrice || ticketPrice == 0) {
+            
+          }
+        }
       }
     })
 
