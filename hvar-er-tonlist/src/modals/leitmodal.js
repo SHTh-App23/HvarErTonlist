@@ -44,7 +44,9 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
             
           }*/
           if (event.verd <= ticketPrice || ticketPrice == 0) {
-            
+            if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) ) {
+              console.log(event)
+            }
           }
         }
       }
