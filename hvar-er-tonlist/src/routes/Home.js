@@ -23,9 +23,9 @@ const Home = () => {
             <div className='font-darkblue'>
               <img className='event-preview-img border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>
               <div className='event-details'>
-                <h3 className='weight-bold'>
+                <h2 className='weight-bold'>
                   {event.name}
-                </h3>
+                </h2>
                 <h4 className='weight-light'>
                   {new Date(event.date).toLocaleDateString()}
                 </h4>

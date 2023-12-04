@@ -33,16 +33,15 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       'to date:',
       toDate
     );
-    const filteredEvents = events.filter(event => {
-      return (
-        (searchQuery === '' || event.name.toLowerCase().includes(searchQuery.toLowerCase())) &&
-        (selectedLocation === '' || event.location === selectedLocation) &&
-        (selectedGenre === '' || event.genre === selectedGenre) &&
-        (event.ticketPrice <= ticketPrice) &&
-        (fromDate === '' || event.date >= fromDate) &&
-        (toDate === '' || event.date <= toDate)
-      );
-    });
+    console.log(events, searchQuery)
+    const filteredEvents = events.filter((event) => event.name == 'searchQuery');
+
+    events.map(event => {
+      console.log(event.name)
+      if (event.name == searchQuery) {
+        console.log('found event')
+      }
+    })
 
     // You can pass the search query to the parent component or perform any other action
     onSearch({ filteredEvents });
@@ -71,7 +70,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
       <label className='font-size-medium font-darkblue'>
         <b>Miðaverð</b> {ticketPrice}kr
         <br />
-        <input 
+        <input
           className='max-width'
           type="range"
           min="0"

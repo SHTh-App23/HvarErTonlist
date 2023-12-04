@@ -125,6 +125,11 @@ button {
   font-size: 1.2em;
   font-weight: bold;
   font-family: 'roboto';
+  transition: .2s ease;
+}
+
+a{
+  transition: .2s ease;
 }
 
 .flex{
@@ -194,6 +199,10 @@ button {
   height: 14em;
   width: 14em;
   border-radius: 50%;
+}
+button:hover, .events-container a:hover{
+  cursor: pointer;
+  box-shadow: 0 0 0 2px  var(--darkblue);
 }
 
 footer {
