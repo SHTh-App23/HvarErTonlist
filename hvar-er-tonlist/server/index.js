@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const authRoutes = require('./routes/auth')
+//const authRoutes = require('./routes/auth')
 const userModel = require("./models/users");
 const eventModel = require("./models/events");
 
@@ -12,13 +12,13 @@ app.use(express.json());
 mongoose.connect("mongodb+srv://4360szymon:hvarertonlist@hvarertonlistcluster.orieewc.mongodb.net/hvarertonlist?retryWrites=true&w=majority", {
 });
 
-// app.use('/auth', authRoutes);
+//app.use('/auth', authRoutes);
 
 // Fa usera
 app.get('/getUsers', (req, res) => {
   userModel.find()
-  .then(users => res.json({ users }))
-  .catch(err => res.json(err));
+    .then(users => res.json(users))
+    .catch(err => res.json(err));
 });
 // Fa events
 app.get('/getEvents', (req, res) => {
