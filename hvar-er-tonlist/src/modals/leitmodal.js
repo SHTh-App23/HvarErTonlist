@@ -18,34 +18,30 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   }, [])
 
   const handleSearch = () => {
-    // Implement your search logic here
-    console.log(
-      'Searching for:',
-      searchQuery,
-      'in location',
-      selectedLocation,
-      'with genre',
-      selectedGenre,
-      'with ticket price',
-      ticketPrice,
-      'from date',
-      fromDate,
-      'to date:',
-      toDate
-    );
-    console.log(events, searchQuery)
-    const filteredEvents = events.filter((event) => event.name == 'searchQuery');
 
-    events.map(event => {
-      console.log(event.name)
-      if (event.name == searchQuery) {
-        console.log('found event')
-      }
-    })
 
-    // You can pass the search query to the parent component or perform any other action
-    onSearch({ filteredEvents });
-    // Close the modal after searching
+    let filteredEvents = events;
+    if (!searchQuery == '') {
+      filteredEvents = filteredEvents.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    if (!selectedLocation == '') {
+      filteredEvents = filteredEvents.filter((event) => event.location === selectedLocation);
+    }
+    if (!selectedGenre == '') {
+      filteredEvents = filteredEvents.filter((event) => event.genre === selectedGenre);
+    }
+    if (!ticketPrice == '') {
+      filteredEvents = filteredEvents.filter((event) => event.verd <= ticketPrice );
+    }
+    if (!fromDate == '' && !toDate == '') {
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) );
+    } else if (fromDate == '' && !toDate == '') {
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) );
+    } else if (!fromDate == '' && toDate == '') {
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")));
+    }
+    
+    console.log(filteredEvents)
     onRequestClose();
   };
 
@@ -65,6 +61,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
         <option value="">Allar tegundir</option>
         <option value="Hip hop">Hip hop</option>
         <option value="Jazz">Jazz</option>
+        <option value="Rokk">Rokk</option>
         <option value="Classical">Classical</option>
       </select>
       <label className='font-size-medium font-darkblue'>
