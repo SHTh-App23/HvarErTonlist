@@ -36,9 +36,10 @@ const Event = () => {
 
   return (
     <div className='page-container'>
-      <div className='event-container'>        
+      <div className='event-container'>
         <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>
         <h1 className='font-darkblue'>{event.name}</h1>
+        <h2 className='font-darkblue font-regular'>{event.genre}</h2>
         <h2 className='font-darkblue font-light'>{eventDate.toLocaleDateString()}</h2>
         <h2 className='font-darkblue font-regular'>{event.location}</h2>
         <h2 className='font-darkblue font-bold'>{event.verd} kr.</h2>
@@ -48,6 +49,11 @@ const Event = () => {
           </div>
         </div>
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
+      </div>
+      <div>
+        <button className='border-radius-small font-darkblue border-darkblue' color="inherit">
+          Hef áhuga
+        </button>
       </div>
 
     </div>

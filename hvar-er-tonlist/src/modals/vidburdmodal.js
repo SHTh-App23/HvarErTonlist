@@ -18,6 +18,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [organizer, setOrganizer] = useState("");
+  const [genre, setGenre] = useState("");
   const [verd, setVerd] = useState("");
   const [imageUpload, setImageUpload] = useState('')
 
@@ -63,6 +64,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
           description,
           imageUrls: [imageUrl], // Send the public URL in an array
           organizer,
+          genre,
           verd,
         }),
       });
@@ -81,6 +83,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setLocation("");
         setDescription("");
         setOrganizer("");
+        setGenre("");
         setImageUrls([]); // Clear image URLs after saving
         setVerd("");
         onRequestClose();
@@ -105,6 +108,12 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         <option value="">Staðsetning</option>
         <option value="Gaukurinn">Gaukurinn</option>
         <option value="Iðnó">Iðnó</option>
+      </select>
+      
+      <select className='border-radius-small text-input max-width' value={genre} onChange={(e) => setGenre(e.target.value)}>
+        <option value="">Genre</option>
+        <option value="Rokk">Rokk</option>
+        <option value="Jazz">Jazz</option>
       </select>
 
       <div className='grid gap-small'>
