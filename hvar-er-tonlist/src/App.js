@@ -3,6 +3,7 @@ import './index.css';
 import { Routes, Route } from 'react-router-dom';
 import Modal from 'react-modal';
 import Home from './routes/Home';
+import Leit from './routes/Leit';
 import Event from './routes/Event';
 import Profile from './routes/Profile';
 import LoginModal from './modals/loginmodal';
@@ -70,6 +71,7 @@ function App() {
       <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} openNewUserModal={openNewUserModal} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/leit" element={<Leit />} />
         <Route path="/event/:eventID" element={<Event />} />
         <Route path="/profile/:userID" element={<Profile openVidburdurModal={openVidburdurModal} />}  />
       </Routes>
