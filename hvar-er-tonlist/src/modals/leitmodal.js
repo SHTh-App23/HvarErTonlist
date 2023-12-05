@@ -22,54 +22,26 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
 
     let filteredEvents = events;
     if (!searchQuery == '') {
-      filteredEvents = events.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      filteredEvents = filteredEvents.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     if (!selectedLocation == '') {
-      filteredEvents = events.filter((event) => event.location == selectedLocation);
+      filteredEvents = filteredEvents.filter((event) => event.location === selectedLocation);
+    }
+    if (!selectedGenre == '') {
+      filteredEvents = filteredEvents.filter((event) => event.genre === selectedGenre);
     }
     if (!ticketPrice == '') {
-      filteredEvents = events.filter((event) => event.verd <= ticketPrice );
+      filteredEvents = filteredEvents.filter((event) => event.verd <= ticketPrice );
     }
     if (!fromDate == '' && !toDate == '') {
-      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) );
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) );
     } else if (fromDate == '' && !toDate == '') {
-      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) );
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) );
     } else if (!fromDate == '' && toDate == '') {
-      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")));
+      filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")));
     }
-    if (!selectedLocation == '') {
-      filteredEvents = events.filter((event) => event.genre == selectedGenre);
-    }
-/*
-    events.map(event => {
-      if (event.name.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery == '') {
-        
-          if (event.genre == selectedGenre || selectedGenre == '') {
-           
-          if (event.verd <= ticketPrice || ticketPrice == 0) {
-            if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) || fromDate == '') {
-  
-              if (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) || toDate == '') {
-                
-                if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) ) {
-                  
-                }
-              }
-            }
-            
-          }
-        }
-      }
-    })
-   
-}*/
     
     console.log(filteredEvents)
-
-
-    // You can pass the search query to the parent component or perform any other action
-    onSearch({ filteredEvents });
-    // Close the modal after searching
     onRequestClose();
   };
 
@@ -89,6 +61,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
         <option value="">Allar tegundir</option>
         <option value="Hip hop">Hip hop</option>
         <option value="Jazz">Jazz</option>
+        <option value="Rokk">Rokk</option>
         <option value="Classical">Classical</option>
       </select>
       <label className='font-size-medium font-darkblue'>
