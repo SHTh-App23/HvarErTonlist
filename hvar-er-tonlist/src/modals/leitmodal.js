@@ -18,30 +18,54 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
   }, [])
 
   const handleSearch = () => {
-    // Implement your search logic here
-    console.log(
-      'Searching for:',
-      searchQuery,
-      'in location',
-      selectedLocation,
-      'with genre',
-      selectedGenre,
-      'with ticket price',
-      ticketPrice,
-      'from date',
-      fromDate,
-      'to date:',
-      toDate
-    );
-    console.log(events, searchQuery)
-    const filteredEvents = events.filter((event) => event.name == 'searchQuery');
 
+
+    let filteredEvents = events;
+    if (!searchQuery == '') {
+      filteredEvents = events.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    if (!selectedLocation == '') {
+      filteredEvents = events.filter((event) => event.location == selectedLocation);
+    }
+    if (!ticketPrice == '') {
+      filteredEvents = events.filter((event) => event.verd <= ticketPrice );
+    }
+    if (!fromDate == '' && !toDate == '') {
+      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) );
+    } else if (fromDate == '' && !toDate == '') {
+      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) );
+    } else if (!fromDate == '' && toDate == '') {
+      filteredEvents = events.filter((event) => parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")));
+    }
+    if (!selectedLocation == '') {
+      filteredEvents = events.filter((event) => event.genre == selectedGenre);
+    }
+/*
     events.map(event => {
-      console.log(event.name)
-      if (event.name == searchQuery) {
-        console.log('found event')
+      if (event.name.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery == '') {
+        
+          if (event.genre == selectedGenre || selectedGenre == '') {
+           
+          if (event.verd <= ticketPrice || ticketPrice == 0) {
+            if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) || fromDate == '') {
+  
+              if (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,"")) || toDate == '') {
+                
+                if (parseInt(event.date.slice(0,10).replace(/-/g,"")) >= parseInt(fromDate.replace(/-/g,"")) && (parseInt(event.date.slice(0,10).replace(/-/g,"")) <= parseInt(toDate.replace(/-/g,""))) ) {
+                  
+                }
+              }
+            }
+            
+          }
+        }
       }
     })
+   
+}*/
+    
+    console.log(filteredEvents)
+
 
     // You can pass the search query to the parent component or perform any other action
     onSearch({ filteredEvents });
