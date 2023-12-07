@@ -52,15 +52,24 @@ const LeitModal = ({ onRequestClose }) => {
     setEvents(filteredEvents)
     console.log(events)
     navigate(`/leit/`, {state: {events: filteredEvents}});
-    onRequestClose();
+
+    setTimeout(() => {
+      onRequestClose();
+    }, 0);
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  }
 
   return (
 
     <div className='flex flex-column gap-large'>
       <h1 className='font-darkblue no-margin'>Leita</h1>
 
-      <input placeholder='Leitarorð' className='border-radius-small text-input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+      <input placeholder='Leitarorð' className='border-radius-small text-input' type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} onKeyDown={handleKeyDown} />
 
       <select className='border-radius-small text-input' value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
         <option value="">Allar staðsetningar</option>
@@ -69,10 +78,11 @@ const LeitModal = ({ onRequestClose }) => {
       </select>
       <select className='border-radius-small text-input' value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
         <option value="">Allar tegundir</option>
-        <option value="Hip hop">Hip hop</option>
-        <option value="Jazz">Jazz</option>
         <option value="Rokk">Rokk</option>
-        <option value="Classical">Classical</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Indie">Indie</option>
+        <option value="Hip-hop">Hip-hop</option>
+        <option value="Metal">Metal</option>
       </select>
       <label className='font-size-medium font-darkblue'>
         <b>Miðaverð</b> {ticketPrice}kr

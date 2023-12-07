@@ -33,11 +33,17 @@ const LoginModal = ({ isOpen, onRequestClose, openNewUserModal }) => {
     onRequestClose();
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  }
+
   return (
     <div className='flex flex-column gap-large'>
       <h1 className='font-darkblue no-margin'>Login</h1>
-      <input placeholder='Notandanafn' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input placeholder='Lykilorð' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <input placeholder='Notandanafn' className='border-radius-small text-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKeyDown} />
+      <input placeholder='Lykilorð' className='border-radius-small text-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={handleKeyDown} />
       <div className='flex gap-small'>
         <button className='border-radius-small border-darkblue' type="button" onClick={handleLogin}>Skrá inn</button>
         <button className='border-radius-small border-darkblue' type="button" onClick={openNewUserModal}>Búa til aðgang</button>
