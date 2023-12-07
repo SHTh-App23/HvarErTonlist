@@ -28,23 +28,23 @@ const LeitModal = ({ onRequestClose }) => {
 
     let filteredEvents = events;
 
-    if (!searchQuery == '') {
+    if (!searchQuery === '') {
       filteredEvents = filteredEvents.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
     }
-    if (!selectedLocation == '') {
+    if (!selectedLocation === '') {
       filteredEvents = filteredEvents.filter((event) => event.location === selectedLocation);
     }
-    if (!selectedGenre == '') {
+    if (!selectedGenre === '') {
       filteredEvents = filteredEvents.filter((event) => event.genre === selectedGenre);
     }
-    if (!ticketPrice == '') {
+    if (!ticketPrice === '') {
       filteredEvents = filteredEvents.filter((event) => event.verd <= ticketPrice);
     }
-    if (!fromDate == '' && !toDate == '') {
+    if (!fromDate === '' && !toDate === '') {
       filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0, 10).replace(/-/g, "")) >= parseInt(fromDate.replace(/-/g, "")) && (parseInt(event.date.slice(0, 10).replace(/-/g, "")) <= parseInt(toDate.replace(/-/g, ""))));
-    } else if (fromDate == '' && !toDate == '') {
+    } else if (fromDate === '' && !toDate === '') {
       filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0, 10).replace(/-/g, "")) <= parseInt(toDate.replace(/-/g, "")));
-    } else if (!fromDate == '' && toDate == '') {
+    } else if (!fromDate === '' && toDate === '') {
       filteredEvents = filteredEvents.filter((event) => parseInt(event.date.slice(0, 10).replace(/-/g, "")) >= parseInt(fromDate.replace(/-/g, "")));
     }
 

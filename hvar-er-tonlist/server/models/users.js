@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     imageUrls: [String],
+    eventInterest: [],
     school: String,
 
 })
