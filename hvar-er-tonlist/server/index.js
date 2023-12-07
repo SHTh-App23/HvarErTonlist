@@ -65,6 +65,35 @@ app.post("/registerUser", async (req, resp) => {
   }
 });
 
+// Bæta við eventInterest á user
+app.post("/eventInterest/:userId", async (req, resp) => {
+  try {
+    const userId = req.params.userId;
+    const { propertyName, propertyValue } = req.body;
+
+    // Find the user by ID
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return resp.status(404).json({ error: 'User not found' });
+    }
+
+    // Add the new property to the user
+    user[propertyName] = propertyValue;
+
+    // Save the updated user
+    const updatedUser = await user.save();
+
+    // Send the updated user (excluding sensitive information) as the response
+    const userWithoutPassword = updatedUser.toObject();
+    delete userWithoutPassword.password;
+    resp.json(userWithoutPassword);
+  } catch (e) {
+    console.error("Error adding property to user:", e);
+    resp.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
 const PORT = 3001;
 
 app.listen(PORT, () => {
