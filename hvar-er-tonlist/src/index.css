@@ -158,10 +158,7 @@ a{
 .grid{
   display: grid;
 }
-.two-row-grid{
-  grid-template-columns: 1fr 1fr;
-  
-}
+
 .events-container a {
   background-color: white;
   text-decoration: none;
@@ -215,4 +212,11 @@ footer {
 footer img{
   height: 4em;
   object-fit: contain;
+}
+
+@media only screen and (min-width: 768px) {
+  .two-row-grid{
+    grid-template-columns: 1fr 1fr;
+    
+  }
 }

@@ -114,6 +114,9 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         <option value="">Genre</option>
         <option value="Rokk">Rokk</option>
         <option value="Jazz">Jazz</option>
+        <option value="Indie">Indie</option>
+        <option value="Hip-hop">Hip-hop</option>
+        <option value="Metal">Metal</option>
       </select>
 
       <div className='grid gap-small'>
