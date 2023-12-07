@@ -99,9 +99,9 @@ const NewUserModal = ({ isOpen, onRequestClose }) => {
         <option value="Iceland">Ísland</option>
         <option value="Norway">Noregur</option>
         <option value="Sweden">Svíþjóð</option>
-        <option value="Greenland">Grænland</option>
         <option value="Ireland">Írland</option>
         <option value="France">Frakkland</option>
+        <option value="Poland">Pólland</option>
         <option value="India">Indland</option>
         <option value="Germany">Þýskaland</option>
       </select>
