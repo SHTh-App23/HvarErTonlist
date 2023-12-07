@@ -69,10 +69,11 @@ const LeitModal = ({ onRequestClose }) => {
       </select>
       <select className='border-radius-small text-input' value={selectedGenre} onChange={(e) => setSelectedGenre(e.target.value)}>
         <option value="">Allar tegundir</option>
-        <option value="Hip hop">Hip hop</option>
-        <option value="Jazz">Jazz</option>
         <option value="Rokk">Rokk</option>
-        <option value="Classical">Classical</option>
+        <option value="Jazz">Jazz</option>
+        <option value="Indie">Indie</option>
+        <option value="Hip-hop">Hip-hop</option>
+        <option value="Metal">Metal</option>
       </select>
       <label className='font-size-medium font-darkblue'>
         <b>Miðaverð</b> {ticketPrice}kr

@@ -51,7 +51,7 @@ const Event = () => {
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
       </div>
       <div>
-        <button className='border-radius-small font-darkblue border-darkblue' onClick={console.log("Þú hefur áhuga á " + event.name)} color="inherit">
+        <button className='border-radius-small font-darkblue border-darkblue' onClick={() => console.log("Þú hefur áhuga á " + event.name)} color="inherit">
           Hef áhuga
         </button>
       </div>

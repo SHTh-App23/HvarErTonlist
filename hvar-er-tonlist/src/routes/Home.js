@@ -28,6 +28,9 @@ const Home = () => {
                 <h2 className='weight-bold'>
                   {event.name}
                 </h2>
+                <h3 className='weight-light'>
+                  {event.genre}
+                </h3>
                 <h4 className='weight-light'>
                   {new Date(event.date).toLocaleDateString()}
                 </h4>
