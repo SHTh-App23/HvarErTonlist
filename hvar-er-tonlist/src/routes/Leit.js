@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
+const Leit = ({ filteredEvents })  => {
+  const location = useLocation();
 
-const Leit = () => {
-  const filteredEvents = []
+  console.log(location.state.events)
 
   return (
     <div className='page-container'>
       <div className='grid two-row-grid events-container gap-large ' >
-        {filteredEvents.map(event => (
+        {location.state.events.map(event => (
           <Link className='border-radius-large border-darkblue' key={event._id} to={`/event/${event._id}`}>
             <div className='font-darkblue'>
               <img className='event-preview-img border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200'/>

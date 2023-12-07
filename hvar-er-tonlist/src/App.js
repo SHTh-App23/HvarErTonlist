@@ -19,6 +19,7 @@ Modal.setAppElement('#root'); // Set the root element for accessibility
 function App() {
 
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [isVidburdurModalOpen, setVidburdurModalOpen] = useState(false);
   const [isLeitModalOpen, setLeitModalOpen] = useState(false);
   const [isNewUserModalOpen, setNewUserModalOpen] = useState(false);
@@ -71,7 +72,7 @@ function App() {
       <Navbar openLoginModal={openLoginModal} openLeitModal={openLeitModal} openVidburdurModal={openVidburdurModal} openNewUserModal={openNewUserModal} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/leit" element={<Leit />} />
+        <Route path="/leit" element={<Leit filteredEvents={filteredEvents}/>} />
         <Route path="/event/:eventID" element={<Event />} />
         <Route path="/profile/:userID" element={<Profile openVidburdurModal={openVidburdurModal} />}  />
       </Routes>

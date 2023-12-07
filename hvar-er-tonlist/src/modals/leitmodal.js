@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
+const LeitModal = ({ onRequestClose }) => {
 
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ const LeitModal = ({ isOpen, onRequestClose, onSearch }) => {
 
     setEvents(filteredEvents)
     console.log(events)
-    navigate(`leit`);
+    navigate(`/leit/`, {state: {events: filteredEvents}});
     onRequestClose();
   };
 
