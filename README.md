@@ -1,6 +1,6 @@
 # Hvar Er Tónlist? - Héðinn, Szymon og Þorgeir
 ## VEFÞ3VÞ05DU
-Stack: MongoDB, Express.js, React, Node.js, Mongoose, Firebase <br> <br>
+Stack: MongoDB, Express.js, React, Node.js, Firebase <br> <br>
 Við ætlum að gera app sem sýnir tónlistaviðburði í Íslandi. Notandi getur búið til account og skráð sig inn, skráð gögn um sig og fengið meðmælingar um viðburði, fundið tónleika sem hann hefur áhuga, séð hvaða- og hverskonar fólk eru að mæta á viðburði, og líka skráð sína eigin tónleika inn á vefsíðuna. Það verður síunarkerfi, og hægt verður að leita að viðburðum eftir leitarorði, dagsetningu, tónlistartegund, miðaverði, og staðsetningu.
 
 Figma:
