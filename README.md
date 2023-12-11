@@ -14,3 +14,5 @@ Wireflow, desktop:
 Wireflow, mobile:
 ![alt text](https://github.com/SHTh-App23/HvarErTonlist/blob/main/Myndir/wireflow_mobile1.jpeg)
 ![alt text](https://github.com/SHTh-App23/HvarErTonlist/blob/main/Myndir/wireflow_mobile2.jpeg)
+
+[Screenshots](screenshots.md)
