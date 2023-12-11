@@ -13,7 +13,7 @@ const Event = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:3001/getUsers')
-      .then(users => { console.log(users.data); setUsers(users.data) })
+      .then(users => { setUsers(users.data) })
       .catch(err => console.log(err));
 
   }, []);
@@ -24,8 +24,8 @@ const Event = () => {
     axios
       .get('http://localhost:3001/getEvents')
       .then((response) => {
+        console.log(response.data);
         setEvents(response.data);
-
       })
       .catch((err) => console.log(err));
 
@@ -75,17 +75,33 @@ const Event = () => {
         <h2 className='font-darkblue font-bold'>{event.verd} kr.</h2>
         <div className='event-stats'>
           <div className='border-radius-small font-darkblue'>
-            Statistics koma hér
+            {events.map(event => {
+              
+              if (event._id == eventID) {
+                return <p>Það hafa {event.interestedUsers.length} áhuga á þessum viðburð.</p>
+              }
+            })}
           </div>
         </div>
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
       </div>
       <div>
+<<<<<<< HEAD
         {!userExpressedInterest && userId && (
           <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
             Hef áhuga
           </button>
         )}
+=======
+      {userId == null ? (
+          <p>Skráðu inn til að sýna áhuga</p>
+        ) : (
+          <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
+          Hef áhuga
+        </button>
+        )}
+        
+>>>>>>> c9d6e3ec2d0b82c3ec775da09e87a8267e239fc5
       </div>
 
 
