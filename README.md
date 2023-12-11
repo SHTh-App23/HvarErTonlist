@@ -11,5 +11,8 @@ Figma:
 ### [Screenshots](screenshots.md) <br>
 ### [Linkur á YouTube video](https://youtu.be/lGtoa6gp_d0) <br>
 
-Gagnagrununur: <br>
+Gagnagrunnur: <br>
+Við notuðum mongoDB til að halda utan um usera og eventa. Myndirnarnar (profile pic og event picture) eru á firebase. Public linkur sem Firebase býr til fyrir myndina er settur í imageUrl og þannig notar appið linkinn sem source til að birta rétta mynd. Þegar notandi ýtir á takka á viðburði sem hann hefur áhuga á er id hans sett í array af interested users á viðburðinum í mongoDB 
 <img width="696" alt="Screenshot 2023-12-11 at 12 10 56" src="https://github.com/SHTh-App23/HvarErTonlist/assets/89400863/605d1f5d-e900-41dd-a5b2-379df8ccfdbe">
+<img width="954" alt="Screenshot 2023-12-11 at 12 15 22" src="https://github.com/SHTh-App23/HvarErTonlist/assets/89400863/cdfa4bd2-b7db-4b58-b20b-0341e3d9be70">
+<img width="837" alt="Screenshot 2023-12-11 at 12 20 04" src="https://github.com/SHTh-App23/HvarErTonlist/assets/89400863/5f84354b-267a-4c01-8dbc-7bdb87cd7959">
