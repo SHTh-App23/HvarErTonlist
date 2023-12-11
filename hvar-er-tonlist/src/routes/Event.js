@@ -86,13 +86,6 @@ const Event = () => {
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
       </div>
       <div>
-<<<<<<< HEAD
-        {!userExpressedInterest && userId && (
-          <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
-            Hef áhuga
-          </button>
-        )}
-=======
       {userId == null ? (
           <p>Skráðu inn til að sýna áhuga</p>
         ) : (
@@ -101,7 +94,6 @@ const Event = () => {
         </button>
         )}
         
->>>>>>> c9d6e3ec2d0b82c3ec775da09e87a8267e239fc5
       </div>
 
 
