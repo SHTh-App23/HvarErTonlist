@@ -168,7 +168,7 @@ a{
   background-color: var(--lightblue);
   width: min-content;
   text-wrap: nowrap;
-  padding: 1em;
+  padding: .4em 1em;
 }
 .flex-column{
   flex-direction: column;
