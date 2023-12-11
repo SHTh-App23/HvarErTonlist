@@ -32,8 +32,8 @@ const Event = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`http://localhost:3001/eventInterest/${userId}`, {
+    /*try {
+      const response = await fetch(`http://localhost:3001/eventInterest/${eventID}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -58,7 +58,22 @@ const Event = () => {
       console.error("Error saving data:", error.message);
       // Handle the error as needed (e.g., display an error message to the user)
     }
+  };*/
+  
+    try {
+      const response = await axios.post(`http://localhost:3001/events/${eventID}/interest`, { userId });
+  
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
+  
+      alert("User added to interestedUsers array");
+    } catch (error) {
+      console.error("Error adding user to interestedUsers array:", error.message);
+      // Handle the error as needed (e.g., display an error message to the user)
+    }
   };
+  
 
 
   useEffect(() => {
@@ -78,7 +93,7 @@ const Event = () => {
   return (
     <div className='page-container'>
       <div className='event-container'>
-        <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} alt='https://picsum.photos/200' />
+        <img className='border-radius-large border-darkblue' src={event.imageUrls && event.imageUrls.length > 0 ? event.imageUrls[0] : ''} />
         <h1 className='font-darkblue'>{event.name}</h1>
         <h2 className='font-darkblue font-regular'>{event.genre}</h2>
         <h2 className='font-darkblue font-light'>{eventDate.toLocaleDateString()}</h2>
