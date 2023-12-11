@@ -86,14 +86,13 @@ const Event = () => {
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
       </div>
       <div>
-      {userId == null ? (
-          <p>Skráðu inn til að sýna áhuga</p>
-        ) : (
+
+        {!userExpressedInterest && userId && (
           <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
-          Hef áhuga
-        </button>
+            Hef áhuga
+          </button>
         )}
-        
+
       </div>
 
 
