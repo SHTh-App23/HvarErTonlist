@@ -41,7 +41,7 @@ const Event = () => {
         throw new Error(response.data.message);
       }
   
-      alert("User added to interestedUsers array");
+      alert("Þú hefur áhuga á þessum viðburði");
       setUserExpressedInterest(true);
     } catch (error) {
       console.error("Error adding user to interestedUsers array:", error.message);

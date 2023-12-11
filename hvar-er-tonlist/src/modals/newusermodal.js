@@ -46,7 +46,7 @@ const NewUserModal = ({ isOpen, onRequestClose }) => {
     e.preventDefault();
     try {
       if (password !== passwordII) {
-        alert("Passwords do not match.");
+        alert("Lykilorðin eru ekki eins");
         return;
       }
       const imageUrl = await uploadFile(); // Wait for image upload to complete
@@ -74,7 +74,7 @@ const NewUserModal = ({ isOpen, onRequestClose }) => {
       console.warn(result);
 
       if (result) {
-        alert("Data saved successfully");
+        alert("Nýr notandi skráður");
         
         onRequestClose();
       }

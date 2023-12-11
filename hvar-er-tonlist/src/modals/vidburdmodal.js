@@ -79,7 +79,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
       console.warn(result);
 
       if (result) {
-        alert("Data saved successfully");
+        alert("Viðburður hefur verið skráður");
         setName("");
         setDate("");
         setLocation("");
