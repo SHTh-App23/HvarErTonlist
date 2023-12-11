@@ -8,6 +8,7 @@ const Event = () => {
 
   const [events, setEvents] = useState([]);
   const [event, setEvent] = useState([]);
+  const [userExpressedInterest, setUserExpressedInterest] = useState(false);
 
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -32,33 +33,6 @@ const Event = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    /*try {
-      const response = await fetch(`http://localhost:3001/eventInterest/${eventID}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          propertyName: 'eventInterest',
-          propertyValue: `${userId}`, 
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to save data. Server returned ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.warn(result);
-
-      if (result) {
-        alert("Data saved successfully");
-      }
-    } catch (error) {
-      console.error("Error saving data:", error.message);
-      // Handle the error as needed (e.g., display an error message to the user)
-    }
-  };*/
   
     try {
       const response = await axios.post(`http://localhost:3001/events/${eventID}/interest`, { userId });
@@ -68,12 +42,12 @@ const Event = () => {
       }
   
       alert("User added to interestedUsers array");
+      setUserExpressedInterest(true);
     } catch (error) {
       console.error("Error adding user to interestedUsers array:", error.message);
       // Handle the error as needed (e.g., display an error message to the user)
     }
   };
-  
 
 
   useEffect(() => {
@@ -107,10 +81,13 @@ const Event = () => {
         <h3 className='event-description font-darkblue font-light'>{event.description}</h3>
       </div>
       <div>
-        <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
-          Hef áhuga
-        </button>
+        {!userExpressedInterest && userId && (
+          <button className='border-radius-small font-darkblue border-darkblue' onClick={handleOnSubmit} color="inherit">
+            Hef áhuga
+          </button>
+        )}
       </div>
+
 
     </div>
   );
