@@ -10,6 +10,7 @@ const eventSchema = new mongoose.Schema({
     genre: String,
     imageUrls: [String],
     verd: Number,
+    interestedUsers: [String]
 })
 
 const eventModel = mongoose.model("events", eventSchema)

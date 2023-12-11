@@ -24,6 +24,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
 
   const [imageUrls, setImageUrls] = useState("");
   const imagesListRef = ref(storage, "images/");
+  const [interestedUsers, setInterestedUsers] = useState("");
 
   const uploadFile = () => {
     return new Promise((resolve, reject) => {
@@ -66,6 +67,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
           organizer,
           genre,
           verd,
+          interestedUsers: []
         }),
       });
 
@@ -86,6 +88,7 @@ const VidburdurModal = ({ isOpen, onRequestClose }) => {
         setGenre("");
         setImageUrls([]); // Clear image URLs after saving
         setVerd("");
+        setInterestedUsers("");
         onRequestClose();
       }
     } catch (error) {

@@ -65,6 +65,80 @@ app.post("/registerUser", async (req, resp) => {
   }
 });
 
+// Bæta við eventInterest á user
+/*app.post("/eventInterest/:eventId", async (req, resp) => {
+  try {
+    const userId = req.params.userId;
+    const { propertyName, propertyValue } = req.body;
+
+    // Find the user by ID
+    const event = await userModel.findById(eventID);
+
+    if (!user) {
+      return resp.status(404).json({ error: 'User not found' });
+    }
+
+    // Add the new property to the user
+    user[propertyName] = propertyValue;
+
+    // Save the updated user
+    const updatedUser = await user.save();
+
+    // Send the updated user (excluding sensitive information) as the response
+    const userWithoutPassword = updatedUser.toObject();
+    delete userWithoutPassword.password;
+    resp.json(userWithoutPassword);
+  } catch (e) {
+    console.error("Error adding property to user:", e);
+    resp.status(500).json({ error: 'Something went wrong' });
+  }
+});
+
+app.post('/events/:eventId/interest', async (req, res) => {
+  const { eventId } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const result = await client.db('hvarertonlist').collection('events').updateOne(
+      { _id: ObjectId(eventId) },
+      { $addToSet: { interestedUsers: userId } }
+    );
+
+    if (result.modifiedCount === 1) {
+      res.json({ success: true, message: 'User added to interestedUsers array.' });
+    } else {
+      res.json({ success: false, message: 'User not added to interestedUsers array.' });
+    }
+  } catch (error) {
+    console.error('Error updating event in the database', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});*/
+
+app.post('/events/:eventId/interest', async (req, res) => {
+  const { eventId } = req.params;
+  const { userId } = req.body;
+  if (userId != null) {
+    try {
+      const updatedEvent = await eventModel.findByIdAndUpdate(
+        eventId,
+        { $addToSet: { interestedUsers: userId } },
+        { new: true } // Returns the modified document
+      );
+
+      if (updatedEvent) {
+        res.json({ success: true, message: 'User added to interestedUsers array.' });
+      } else {
+        res.json({ success: false, message: 'User not added to interestedUsers array.' });
+      }
+    } catch (error) {
+      console.error('Error updating event in the database', error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  }
+});
+
+
 const PORT = 3001;
 
 app.listen(PORT, () => {
