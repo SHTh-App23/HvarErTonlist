@@ -7,7 +7,7 @@ Figma:
 ![alt text](https://github.com/SHTh-App23/HvarErTonlist/blob/main/Myndir/Screenshot%20(4).png) 
 
 ### [Figma link](https://www.figma.com/file/hmLHLiqnaKfYWJ4Ctm8CTS/HvarErTonlist?type=design&node-id=0%3A1&mode=design&t=2xE4WipAldwKl2Tm-1) <br>
-### [Myndir af wireflow]() <br>
+### [Myndir af wireflow](wireflow.md) <br>
 ### [Screenshots](screenshots.md) <br>
 ### [Linkur á YouTube video](https://youtu.be/lGtoa6gp_d0) <br>
 ### ![DataBase]()
