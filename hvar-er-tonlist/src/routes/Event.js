@@ -40,7 +40,7 @@ const Event = () => {
         },
         body: JSON.stringify({
           propertyName: 'eventInterest',
-          propertyValue: 'yourEventInterestValueHere', // Replace with the actual value
+          propertyValue: `${userId}`, 
         }),
       });
 
