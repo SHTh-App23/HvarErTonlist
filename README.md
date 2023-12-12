@@ -10,6 +10,7 @@ Figma:
 ### [Myndir af wireflow](wireflow.md) <br>
 ### [Screenshots](screenshots.md) <br>
 ### [Linkur á YouTube video](https://youtu.be/lGtoa6gp_d0) <br>
+### [Data i json formi](https://github.com/SHTh-App23/HvarErTonlist/blob/main/data%20(1).json) <br>
 
 Gagnagrunnur: <br>
 Við notuðum mongoDB til að halda utan um usera og eventa. Myndirnar (profile pic og event picture) eru á firebase. Public linkur sem Firebase býr til fyrir myndina er settur í imageUrl og þannig notar appið linkinn sem source til að birta rétta mynd. Þegar notandi ýtir á takka á viðburði sem hann hefur áhuga á er id hans sett í array af interested users á viðburðinum í mongoDB 
